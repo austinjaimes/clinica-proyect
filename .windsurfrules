@@ -1,0 +1,7 @@
+- Do not use colors like "blue" and "white". Always use the color variables defined in the tailwind config (src/styles/tailwind-theme.css) which are "primary" and "base"
+- Always use the Button component where possible. It is imported from "@/components/button/Button.astro"
+- Only use "class:list" when the number of classes is too long to see on one line, or for class type organization
+- When using the astro:assets <Image /> component, always add a defined width and densities.
+  - Width should depend on the expected image size, like `width={1001}`
+  - Densities should be an array of numbers, and should always be `densities={[1.5, 2]}`
+- Always automatically update files unless I explicitely ask you not to.
