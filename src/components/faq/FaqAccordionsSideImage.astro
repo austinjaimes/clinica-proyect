@@ -1,0 +1,73 @@
+---
+/**
+ * * FAQ section with side image and accordions
+ */
+
+import doctorImage from "@images/faq/woman.png";
+import { Image } from "astro:assets";
+
+import Divider from "@/components/divider/Divider.astro";
+import { getLocaleFromUrl } from "@/js/localeUtils";
+import { getTranslatedData } from "@/js/translationUtils";
+
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./accordion-small";
+
+const currLocale = getLocaleFromUrl(Astro.url);
+const faqData = getTranslatedData("faqData", currLocale);
+---
+
+<section class="overflow-hidden py-16 md:py-24">
+	<div class="site-container">
+		<div class="grid gap-8 md:grid-cols-2 md:gap-16">
+			<!-- Left Side - FAQ Content -->
+			<div class="flex h-full flex-col justify-between" data-aos="fade-right">
+				<div class="md:max-w-lg">
+					<h2 class="text-primary h1 mb-6 font-extrabold">Frequently Asked Questions</h2>
+					<p class="text-muted-foreground mr-auto mb-8 max-w-sm text-lg text-pretty">
+						If your question is not answered here please call or message our office.
+					</p>
+				</div>
+
+				<div class="mt-6 flex flex-col gap-3">
+					<Accordion class="space-y-1">
+						{
+							faqData.map((faqItem, idx) => (
+								<AccordionItem value={`item-${idx}`} class="border-primary-100 border-b-2 pb-1">
+									<AccordionTrigger class="font-heading px-0 py-4 text-lg font-bold">
+										{faqItem.question}
+									</AccordionTrigger>
+									<AccordionContent
+										class="markdown-content text-muted-foreground px-0"
+										details={faqItem.answer}
+									/>
+								</AccordionItem>
+							))
+						}
+					</Accordion>
+
+					<div class="mt-6">
+						<p class="text-muted-foreground">
+							<span>Still have questions?</span>
+							<a class="text-primary ml-1 font-semibold hover:underline" href="/contact">
+								Contact us
+							</a>
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- Right Side - Image -->
+			<div class="order-first flex md:order-last" data-aos="fade-left">
+				<div class="mb-auto aspect-3/4 h-auto w-full overflow-hidden rounded-2xl">
+					<Image
+						src={doctorImage}
+						alt="Doctor talking with patient"
+						width={800}
+						densities={[1.5, 2]}
+						class="h-full w-full object-cover"
+					/>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

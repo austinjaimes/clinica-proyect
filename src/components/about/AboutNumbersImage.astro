@@ -1,0 +1,77 @@
+---
+import building from "@images/building-2-min.png";
+import { Image } from "astro:assets";
+
+import Divider from "@/components/divider/Divider.astro";
+import { getLocaleFromUrl } from "@/js/localeUtils";
+import { getLocalizedRoute, getTranslatedData, useTranslations } from "@/js/translationUtils";
+
+const currLocale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(currLocale);
+
+interface StatItem {
+	value: string;
+	label: string;
+}
+
+const stats: StatItem[] = [
+	{
+		value: "500+",
+		label: "Happy Customers",
+	},
+	{
+		value: "6",
+		label: "Expert Doctors",
+	},
+	{
+		value: "4.9/5",
+		label: "Customer Reviews",
+	},
+];
+---
+
+<section class="py-16 md:py-24">
+	<div class="site-container grid gap-8 md:grid-cols-2 md:gap-16">
+		<div class="order-2 aspect-square overflow-hidden rounded-3xl md:order-1">
+			<Image
+				src={building}
+				alt="Space Coast Medicine Building"
+				width={1001}
+				densities={[1.5, 2]}
+				class="h-full w-full object-cover"
+			/>
+		</div>
+
+		<div class="order-1 md:order-2">
+			<div class="space-y-4">
+				<div class="flex items-center gap-4 md:gap-12">
+					<h2 class="h2 whitespace-nowrap">About Us</h2>
+					<Divider class="mr-16" />
+				</div>
+				<h2 class="text-primary h1 mr-auto max-w-lg">
+					To Improve Your <span class="text-accent-500/80">Health</span>
+				</h2>
+			</div>
+
+			<p class="mt-6 leading-relaxed md:text-lg">
+				At Space Coast Medicine, our doctors believe in treating the whole person, not just the
+				symptoms. We prioritize holistic primary care and work with our patients to create
+				personalized care plans. We empower our patients to take an active role in their health
+				journey.
+			</p>
+
+			<div class="mt-10 flex flex-wrap gap-8">
+				{
+					stats.map((stat) => (
+						<div class="space-y-1.5 pr-6">
+							<p class="text-primary font-heading text-4xl font-extrabold md:text-5xl">
+								{stat.value}
+							</p>
+							<p class="">{stat.label}</p>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</div>
+</section>

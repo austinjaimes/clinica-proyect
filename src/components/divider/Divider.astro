@@ -1,0 +1,31 @@
+---
+import { getLocaleFromUrl } from "@/js/localeUtils";
+import { getLocalizedRoute, getTranslatedData, useTranslations } from "@/js/translationUtils";
+const currLocale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(currLocale);
+export interface Props {
+	/** Optional classes to add to the divider container */
+	class?: string;
+	/** Orientation of the divider */
+	orientation?: "horizontal" | "vertical";
+}
+const { class: className = "", orientation = "horizontal" } = Astro.props as Props;
+
+const isHorizontal = orientation === "horizontal";
+---
+
+<div
+	class:list={[
+		"relative",
+		isHorizontal ? "h-[2px] w-full" : "h-full w-[2px]", // Set container dimensions
+		className,
+	]}
+>
+	<span
+		class:list={[
+			"absolute",
+			isHorizontal ? "inset-x-0 bottom-0 h-[2px]" : "inset-y-0 left-0 w-[2px]", // Set span dimensions and position
+			isHorizontal ? "bg-gradient-to-r" : "bg-gradient-to-b", // Set gradient direction
+			"from-primary-500/20 via-primary-500 to-primary-500/20", // Common gradient colors
+		]}></span>
+</div>

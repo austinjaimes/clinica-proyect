@@ -1,0 +1,141 @@
+---
+import Button from "@/components/button/Button.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const pageLinks = {
+	"Landing Pages": [
+		{ href: "/", title: "Landing One" },
+		{ href: "/examples/landing-2", title: "Landing Two" },
+		{ href: "/examples/landing-3", title: "Landing Three" },
+	],
+	Services: [
+		{ href: "/services", title: "Services Overview" },
+		{ href: "/services/pediatrics", title: "Individual Service Page" },
+	],
+	Blog: [
+		{ href: "/blog", title: "Blog Index" },
+		{ href: "/blog/tsconfig-paths-setup", title: "Post Layout One" },
+		{ href: "/examples/blog-post-2", title: "Post Layout Two" },
+		{ href: "/categories", title: "Categories Index" },
+		{ href: "/categories/productivity", title: "Category Page" },
+	],
+	Sections: [
+		{ href: "/examples/hero-sections", title: "Hero Sections" },
+		{ href: "/examples/about-sections", title: "About Sections" },
+		{ href: "/examples/testimonial-sections", title: "Testimonial Sections" },
+		{ href: "/examples/service-sections", title: "Service Sections" },
+		{ href: "/examples/faq-sections", title: "FAQ Sections" },
+		{ href: "/examples/contact-sections", title: "Contact Sections" },
+	],
+	"Other Pages": [
+		{ href: "/elements", title: "MDX Page Elements" },
+		{ href: "/about", title: "About Us" },
+		{ href: "/privacy-policy", title: "Legal" },
+		{ href: "/not-a-link", title: "404" },
+		{ href: "/rss.xml", title: "RSS Feed" },
+	],
+	"Widgets and Forms": [
+		{ title: "Cookie Consent", id: "test-consent-demo-btn" },
+		{ href: "/examples/contact-sections", title: "Contact Forms" },
+	],
+};
+---
+
+<BaseLayout
+	title="Overview"
+	description="The various pages and elements of Space Coast template by Cosmic Themes"
+>
+	<section class="site-container pt-20 md:pt-36">
+		<h1 class="h1">Overview</h1>
+		<p class="text-muted-foreground mt-2 md:text-lg">
+			The various pages of Space Coast template by Cosmic Themes
+		</p>
+
+		<div class="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+			{
+				Object.entries(pageLinks).map(([category, links]) => (
+					<div class="space-y-4">
+						<h2 class="font-heading mb-3 pb-2 text-xl font-extrabold">{category}</h2>
+						<ul class="space-y-2">
+							{links.map((link) => (
+								<li>
+									{link.href ? (
+										<a
+											href={link.href}
+											class="text-muted-foreground hover:text-primary transition-colors"
+										>
+											{link.title}
+										</a>
+									) : (
+										<button
+											type="button"
+											class="text-muted-foreground hover:text-primary transition-colors"
+											id={link.id}
+										>
+											{link.title}
+										</button>
+									)}
+								</li>
+							))}
+						</ul>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<div id="test-banner" class="fixed inset-x-6 bottom-6 z-50 hidden justify-center">
+		<div
+			class="border-border bg-base-100 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 rounded-2xl border p-4 shadow-sm"
+		>
+			<div class="text-center">
+				<p class="text-muted-foreground text-sm font-medium lg:text-base">
+					We use cookies to improve your experience on this site. To learn more, see our <a
+						href="/privacy-policy"
+						class="text-foreground decoration-primary-600 hover:text-primary underline transition"
+						>Privacy Policy</a
+					>.
+				</p>
+			</div>
+			<div class="mx-auto flex gap-2">
+				<Button variant="primary" type="button">Accept</Button>
+				<Button variant="ghost" type="button">Decline</Button>
+			</div>
+		</div>
+	</div>
+</BaseLayout>
+
+<script>
+	//Script purely for demo of the CookieConsent component. Use the actual <CookieConsent /> component in BaseLayout.astro if desired.
+	function cookieConsentSetup() {
+		const cookieBanner = document.getElementById("test-banner");
+		const acceptButton = document.querySelector("#test-banner button:first-of-type");
+		const declineButton = document.querySelector("#test-banner button:last-of-type");
+		const cookieConsentDemoBtn = document.getElementById("test-consent-demo-btn");
+
+		cookieConsentDemoBtn?.addEventListener("click", () => {
+			cookieBanner?.classList.toggle("hidden");
+			cookieBanner?.classList.toggle("flex");
+		});
+
+		// If the user clicks the accept button, hide the banner and set a cookie
+		acceptButton?.addEventListener("click", () => {
+			console.log("cookies accepted example");
+			cookieBanner?.classList.toggle("hidden");
+			cookieBanner?.classList.toggle("flex");
+		});
+
+		// If the user clicks the decline button, hide the banner and set a cookie
+		declineButton?.addEventListener("click", () => {
+			console.log("cookies declined example");
+			cookieBanner?.classList.toggle("hidden");
+			cookieBanner?.classList.toggle("flex");
+		});
+	}
+
+	// runs on initial page load
+	cookieConsentSetup();
+
+	// runs on view transitions navigation
+	document.addEventListener("astro:after-swap", cookieConsentSetup);
+</script>

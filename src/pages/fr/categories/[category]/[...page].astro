@@ -1,0 +1,77 @@
+---
+import { type Page } from "astro";
+
+import CategoryCloud from "@/components/category-cloud/CategoryCloud.astro";
+import Pagination from "@/components/pagination/Pagination.astro";
+import PostCard from "@/components/post-card/PostCardMultiLink.astro";
+import { defaultLocale } from "@/config/siteSettings.json";
+import { countItems, getAllPosts } from "@/js/blogUtils";
+import { categorify, humanize, slugify } from "@/js/textUtils";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+// generate pagination for tag pages if there are a bunch of posts for a single tag
+export async function getStaticPaths({ paginate }) {
+	const posts = await getAllPosts("fr");
+
+	// get all tags from the posts
+	const allCategories = posts.map((post) => post.data.categories).flat();
+
+	// combine tags and count how many times they appear. these are "slugified"
+	const countedCategories = countItems(allCategories);
+
+	// pagination returns an array of objects with params and page size
+	return Object.entries(countedCategories).flatMap(([category, val]) => {
+		// get all posts that have the tag
+		const filteredPosts = posts.filter((post) => {
+			// make sure to slugify them for comparison
+			const slugifiedCategories = post.data.categories.map((category) => slugify(category));
+			return slugifiedCategories.includes(category);
+		});
+
+		return paginate(filteredPosts, {
+			params: { category: category },
+			pageSize: 6,
+		});
+	});
+}
+
+const { page } = Astro.props as { page: Page };
+const { category } = Astro.params as { category: string };
+
+const formattedCategory = humanize(category);
+---
+
+<BaseLayout
+	title={`${formattedCategory} - Blog posts`}
+	description={`A collection of blog posts about ${formattedCategory}`}
+>
+	<section class="site-container py-24 md:pt-40">
+		<div class="overflow-x-clip">
+			<div class="mr-auto flex max-w-[950px] flex-col">
+				<h1 class="h1">Blog Post about <span class="text-primary">{formattedCategory}</span></h1>
+				<p class="text-muted-foreground mt-2 md:text-lg">
+					Lorem ipsum dolor sit amet, consectetury adipiscing elit. Volutpat, tempor to after
+					condimentum commodo
+				</p>
+			</div>
+
+			<div class="mt-6 flex pb-16">
+				<CategoryCloud />
+			</div>
+		</div>
+
+		<div class="grid gap-8 gap-y-10 md:grid-cols-2">
+			{page.data.map((post) => <PostCard post={post} showDescription={true} data-aos="fade-up" />)}
+		</div>
+
+		<div class="mt-10 flex justify-center md:mt-16">
+			<Pagination
+				basePath={`/categories/${category}/`}
+				prevUrl={page.url.prev}
+				currPage={page.currentPage}
+				nextUrl={page.url.next}
+				lastPage={page.lastPage}
+			/>
+		</div>
+	</section>
+</BaseLayout>

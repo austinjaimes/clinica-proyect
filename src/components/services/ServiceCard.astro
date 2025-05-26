@@ -1,0 +1,48 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Icon } from "astro-icon/components";
+
+import Button from "@/components/button/Button.astro";
+import Divider from "@/components/divider/Divider.astro";
+import { getLocaleFromUrl } from "@/js/localeUtils";
+import { getLocalizedRoute, getTranslatedData, useTranslations } from "@/js/translationUtils";
+
+interface Props {
+	service: CollectionEntry<"services">;
+}
+
+const { service, ...rest } = Astro.props as Props;
+
+const currLocale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(currLocale);
+---
+
+<div class="flex" {...rest}>
+	<Divider orientation="vertical" />
+	<div class="ml-8">
+		<div class="relative mr-auto flex size-18 items-center justify-center">
+			<div
+				class="icon-gradient-border from-primary-500/80 via-primary-500/10 to-primary-500/80 absolute inset-0 rounded-full bg-gradient-to-r"
+			>
+			</div>
+			<Icon name={service.data.icon} class="text-primary relative z-10 h-full w-full p-3" />
+		</div>
+		<h3 class="text-primary font-heading mt-6 text-xl font-extrabold">{service.data.title}</h3>
+		<p class="mt-4 text-base">{service.data.description}</p>
+		<Button
+			variant="ghost"
+			arrow="right"
+			href={getLocalizedRoute(currLocale, `/services/${service.id}`)}
+			class="mt-2 pl-0 font-medium"
+		>
+			Learn More
+		</Button>
+	</div>
+</div>
+
+<style>
+	.icon-gradient-border {
+		-webkit-mask-image: radial-gradient(circle, transparent 65%, black 66%);
+		mask-image: radial-gradient(circle, transparent 65%, black 66%);
+	}
+</style>

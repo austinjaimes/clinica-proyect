@@ -1,0 +1,78 @@
+---
+import "@/styles/global.css";
+
+import { type CollectionEntry } from "astro:content";
+
+import CookieConsent from "@/components/cookie-consent/CookieConsent.astro";
+import Footer from "@/components/footer/Footer.astro";
+import Nav from "@/components/nav/Nav.astro";
+import siteSettings from "@/config/siteSettings.json";
+import { getLocaleFromUrl } from "@/js/localeUtils";
+import BaseHead from "@/layouts/BaseHead.astro";
+
+// heroImage and authorData are defined on blog posts
+// authorData could also be defined on the about author page
+interface Props {
+	type?: "blog" | "general";
+	title: string;
+	description: string;
+	image?: ImageMetadata;
+	navStyle?: "default" | "frosted";
+	authorsData?: CollectionEntry<"authors">[];
+	postFrontmatter?: CollectionEntry<"blog">["data"];
+	noindex?: boolean; // you need to opt-in to no indexing, as it hides the page from search engines
+}
+
+const {
+	type = "general",
+	title,
+	description,
+	image,
+	authorsData,
+	postFrontmatter,
+	noindex = false,
+	navStyle = "default",
+} = Astro.props as Props;
+
+const currLocale = getLocaleFromUrl(Astro.url);
+---
+
+<!doctype html>
+<html lang={currLocale} transition:animate="fade">
+	<head>
+		<BaseHead
+			type={type}
+			title={title}
+			description={description}
+			image={image ? image : undefined}
+			authors={authorsData ? authorsData : undefined}
+			postFrontmatter={postFrontmatter ? postFrontmatter : undefined}
+			noindex={noindex}
+		/>
+	</head>
+	<body id="body" class={` ${siteSettings.useAnimations === true ? "use-animations" : ""}`}>
+		<div id="page" class="">
+			<!-- put cookie consent first so it is seen first by screen readers -->
+			<!-- <CookieConsent /> -->
+			<Nav navStyle={navStyle} />
+			<main class="relative min-h-[100lvh] overflow-x-clip">
+				<slot />
+			</main>
+			<Footer />
+		</div>
+
+		<!-- Scroll animations -->
+		<script>
+			import siteSettings from "@/config/siteSettings.json";
+			import AOS from "@/js/aos/aos";
+
+			if (siteSettings.useAnimations === true) {
+				// runs on initial page load
+				AOS.init({ once: true, duration: 0.75, distance: 100, offset: 120 });
+
+				// runs on view transitions navigation
+				document.addEventListener("astro:after-swap", AOS.refreshHard);
+			}
+		</script>
+	</body>
+</html>

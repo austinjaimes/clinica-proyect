@@ -1,0 +1,71 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+
+import Button from "@/components/button/Button.astro";
+import { filterCollectionByLanguage, getLocaleFromUrl } from "@/js/localeUtils";
+import { getLocalizedRoute, useTranslations } from "@/js/translationUtils";
+
+import ServiceCard from "./ServiceCard.astro";
+
+const currLocale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(currLocale);
+
+const services = await getCollection("services", ({ data }) => {
+	// filter out draft services
+	return data.draft !== true;
+});
+
+// get rid of pages from other languages and remove locale from slug
+const filteredServices = filterCollectionByLanguage(
+	services,
+	currLocale,
+) as CollectionEntry<"services">[];
+
+// order the services
+const orderedServices = filteredServices.sort((a, b) => {
+	// If both have order numbers, compare them
+	if (a.data.order !== undefined && b.data.order !== undefined) {
+		return a.data.order - b.data.order;
+	}
+	// If only a has an order, it should come first
+	if (a.data.order !== undefined) {
+		return -1;
+	}
+	// If only b has an order, it should come first
+	if (b.data.order !== undefined) {
+		return 1;
+	}
+	// If neither has an order, keep original order
+	return 0;
+});
+---
+
+<section
+	id="services-cards"
+	class="from-primary-500/20 to-background my-12 rounded-t-2xl bg-gradient-to-b py-12 md:rounded-t-3xl"
+>
+	<div class="site-container" id="services-cards-trigger">
+		<h2
+			class="h1 text-primary mx-auto max-w-3xl text-center"
+			data-aos="fade-left"
+			data-aos-trigger="#services-cards-trigger"
+		>
+			A Wide Range Of Services For Your Health
+		</h2>
+		<div class="mt-12 grid grid-cols-1 gap-x-8 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
+			{
+				orderedServices.map((service, idx) => (
+					<ServiceCard
+						service={service}
+						data-aos="fade-left"
+						data-aos-delay={idx * 0.15}
+						data-aos-trigger="#services-cards-trigger"
+					/>
+				))
+			}
+		</div>
+		<!-- <div class="mt-16 flex justify-center">
+			<Button variant="primary" href="/services"> View All Services </Button>
+		</div> -->
+	</div>
+</section>

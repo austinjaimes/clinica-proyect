@@ -1,0 +1,28 @@
+---
+import errorImage from "@images/404.png";
+import { Image } from "astro:assets";
+
+import Button from "@/components/button/Button.astro";
+import { getLocaleFromUrl } from "@/js/localeUtils";
+import { getLocalizedRoute } from "@/js/translationUtils";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const currLocale = getLocaleFromUrl(Astro.url);
+---
+
+<BaseLayout title="404" description="Error 404 page not found." noindex={true}>
+	<section
+		class="site-container flex min-h-[90vh] flex-col items-center justify-center py-24 text-center"
+	>
+		<div class="mx-auto flex max-w-[400px] items-center justify-center">
+			<Image src={errorImage} alt="404" width={400} densities={[1.5, 2]} class="h-auto w-full" />
+		</div>
+		<h1 class="h1 mt-10">Something went wrong</h1>
+		<p class="text-muted-foreground mt-2 md:text-lg">
+			Sorry, the page you are looking for could not be found.
+		</p>
+		<Button href={getLocalizedRoute(currLocale, "/")} variant="primary" arrow="left" class="mt-10">
+			Return Home
+		</Button>
+	</section>
+</BaseLayout>

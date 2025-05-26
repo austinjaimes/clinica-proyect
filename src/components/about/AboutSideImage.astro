@@ -1,0 +1,70 @@
+---
+import building from "@images/building-2-min.png";
+import { Image } from "astro:assets";
+
+import Divider from "@/components/divider/Divider.astro";
+import { getLocaleFromUrl } from "@/js/localeUtils";
+import { getLocalizedRoute, getTranslatedData, useTranslations } from "@/js/translationUtils";
+const currLocale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(currLocale);
+---
+
+<section class="py-16 md:py-24">
+	<div class="site-container grid gap-8 md:grid-cols-2 md:gap-16">
+		<div class="" id="about-side-image-trigger">
+			<h2
+				data-aos="fade-up"
+				class="text-primary leading-tighter font-heading text-4xl font-extrabold tracking-wide md:text-5xl xl:text-7xl"
+			>
+				Space Coast Medicine
+			</h2>
+
+			<div class="mt-6">
+				<p
+					class="leading-relaxed md:text-lg"
+					data-aos="fade-up"
+					data-aos-trigger="#about-side-image-trigger"
+					data-aos-delay=".2"
+				>
+					At Space Coast Medicine, our doctors believe in treating the whole person, not just the
+					symptoms. We prioritize holistic primary care and work with our patients to create
+					personalized care plans. We empower our patients to take an active role in their health
+					journey.
+				</p>
+
+				<p
+					class="mt-6 leading-relaxed md:text-lg"
+					data-aos="fade-up"
+					data-aos-trigger="#about-side-image-trigger"
+					data-aos-delay=".4"
+				>
+					At Space Coast Medicine, our doctors believe in treating the whole person, not just the
+					symptoms. We prioritize holistic primary care and work with our patients to create
+					personalized care plans. We empower our patients to take an active role in their health
+					journey.
+				</p>
+
+				<p
+					class="mt-6 leading-relaxed md:text-lg"
+					data-aos="fade-up"
+					data-aos-trigger="#about-side-image-trigger"
+					data-aos-delay=".6"
+				>
+					At Space Coast Medicine, our doctors believe in treating the whole person, not just the
+					symptoms. We prioritize holistic primary care and work with our patients to create
+					personalized care plans.
+				</p>
+			</div>
+		</div>
+
+		<div class="aspect-square overflow-clip rounded-3xl">
+			<Image
+				src={building}
+				alt="Space Coast Medicine Building"
+				width={1001}
+				densities={[1.5, 2]}
+				class="h-full w-full object-cover"
+			/>
+		</div>
+	</div>
+</section>

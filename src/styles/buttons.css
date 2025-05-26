@@ -1,0 +1,31 @@
+/* buttons, 4 variants: "primary", "secondary", "outline", "ghost" */
+.button {
+	@apply flex items-center justify-center px-6 py-2.5 text-center duration-300;
+	@apply text-primary-foreground flex w-fit min-w-[8rem] rounded-full;
+	@apply disabled:pointer-events-none;
+	transition-property:
+		color, background-color, border-color, text-decoration-color, fill, stroke, --tw-gradient-from,
+		--tw-gradient-via, --tw-gradient-to;
+	transition-timing-function: var(--default-transition-timing-function);
+	transition-duration: var(--default-transition-duration);
+}
+
+.button--primary {
+	@apply text-primary-foreground bg-primary-600 hover:bg-primary-700;
+}
+
+/* gradient version of primary button */
+.button--secondary {
+	@apply text-primary-foreground from-primary-400 to-primary-700 bg-gradient-to-r;
+	@apply hover:from-primary-500 hover:to-primary-800;
+}
+
+.button--outline {
+	@apply text-primary-700 border-primary-600 border-2;
+	@apply hover:bg-primary-600 hover:text-white;
+}
+
+.button--ghost {
+	@apply text-primary-700;
+	@apply hover:text-primary-800;
+}

@@ -1,0 +1,32 @@
+---
+import { type InferGetStaticPropsType } from "astro";
+import { type CollectionEntry, getCollection, render } from "astro:content";
+
+import ExternalLink from "@/components/markdown-components/ExternalLink.astro";
+import { defaultLocale } from "@/config/siteSettings.json";
+import { filterCollectionByLanguage } from "@/js/localeUtils";
+import ServiceLayout from "@/layouts/ServiceLayout.astro";
+
+export async function getStaticPaths() {
+	const services = await getCollection("services", ({ data }) => {
+		// filter out draft services
+		return data.draft !== true;
+	});
+
+	// get rid of pages from other languages and remove locale from slug
+	const filteredServices = filterCollectionByLanguage(services, "fr");
+
+	return filteredServices.map((service) => ({
+		params: { slug: service.id },
+		props: service,
+	}));
+}
+type Props = CollectionEntry<"services">;
+
+const service = Astro.props as Props;
+const { Content } = await render(service);
+---
+
+<ServiceLayout service={service}>
+	<Content components={{ a: ExternalLink }} />
+</ServiceLayout>

@@ -1,0 +1,133 @@
+---
+import "swiper/css";
+
+import ArrowLeft from "@tabler/icons/outline/arrow-left.svg";
+import ArrowRight from "@tabler/icons/outline/arrow-right.svg";
+import { type CollectionEntry, getCollection } from "astro:content";
+
+import Button from "@/components/button/Button.astro";
+import Divider from "@/components/divider/Divider.astro";
+import { filterCollectionByLanguage, getLocaleFromUrl } from "@/js/localeUtils";
+import { getLocalizedRoute, useTranslations } from "@/js/translationUtils";
+
+import SwiperSlide from "./ServicesSwiperSlide.astro";
+
+const currLocale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(currLocale);
+
+const services = await getCollection("services", ({ data }) => {
+	// filter out draft services
+	return data.draft !== true;
+});
+
+// get rid of pages from other languages and remove locale from slug
+const filteredServices = filterCollectionByLanguage(
+	services,
+	currLocale,
+) as CollectionEntry<"services">[];
+
+// order the services
+const orderedServices = filteredServices.sort((a, b) => {
+	// If both have order numbers, compare them
+	if (a.data.order !== undefined && b.data.order !== undefined) {
+		return a.data.order - b.data.order;
+	}
+	// If only a has an order, it should come first
+	if (a.data.order !== undefined) {
+		return -1;
+	}
+	// If only b has an order, it should come first
+	if (b.data.order !== undefined) {
+		return 1;
+	}
+	// If neither has an order, keep original order
+	return 0;
+});
+---
+
+<section
+	id="services-swiper"
+	class="from-primary-500/20 to-background my-12 rounded-t-2xl bg-gradient-to-b py-12 md:rounded-t-3xl"
+>
+	<div class="site-container md:gap-12">
+		<div class="grid items-center gap-4 md:grid-cols-2 md:gap-8">
+			<h2 class="h2">Our Services</h2>
+			<Divider class="hidden md:block" />
+		</div>
+		<div class="mt-6 grid items-center gap-4 md:grid-cols-2 md:gap-8">
+			<h3 class="text-primary h1 mr-auto max-w-xl">
+				A Team Of Expert Doctors Specializing In Primary Care
+			</h3>
+			<Button href="/services" class="mt-auto md:ml-auto" arrow="right"> View All Services </Button>
+		</div>
+	</div>
+
+	<!-- Swiper Section -->
+	<div class="site-container mt-12">
+		<div class="relative -mx-4">
+			<div class="swiper services-swiper">
+				<div class="swiper-wrapper">
+					{orderedServices.map((service) => <SwiperSlide service={service} />)}
+				</div>
+			</div>
+			<div class="mt-6 flex justify-center gap-6">
+				<button
+					aria-label="Previous slide"
+					class:list={[
+						"services-swiper-button-prev border-primary text-primary not-disabled:hover:bg-primary not-disabled:hover:text-primary-foreground",
+						"rounded-full border-2 p-3 transition not-disabled:hover:text-base disabled:cursor-not-allowed disabled:opacity-50",
+					]}
+				>
+					<ArrowLeft class="size-8" />
+				</button>
+				<button
+					aria-label="Next slide"
+					class:list={[
+						"services-swiper-button-next border-primary text-primary not-disabled:hover:bg-primary not-disabled:hover:text-primary-foreground",
+						"rounded-full border-2 p-3 transition not-disabled:hover:text-base disabled:cursor-not-allowed disabled:opacity-50",
+					]}
+				>
+					<ArrowRight class="size-8" />
+				</button>
+			</div>
+		</div>
+		<!-- Navigation -->
+	</div>
+</section>
+
+<script>
+	// Import Swiper and modules
+	import Swiper from "swiper";
+	import { Navigation } from "swiper/modules";
+	import type { SwiperOptions } from "swiper/types";
+
+	// Import Swiper styles
+
+	function swiperSetup() {
+		const SwiperParams: SwiperOptions = {
+			modules: [Navigation],
+			slidesPerView: 1.2,
+			spaceBetween: 36,
+			centeredSlides: false,
+			loop: true,
+			navigation: {
+				nextEl: ".services-swiper-button-next",
+				prevEl: ".services-swiper-button-prev",
+			},
+			breakpoints: {
+				768: { slidesPerView: 2.5 },
+				1024: { slidesPerView: 3 },
+				1280: { slidesPerView: 4 },
+			},
+		};
+
+		// Initialize Swiper
+		const swiper = new Swiper(".services-swiper", SwiperParams);
+	}
+
+	// Run on initial page load
+	swiperSetup();
+
+	// Run on view transitions navigation
+	document.addEventListener("astro:after-swap", swiperSetup);
+</script>

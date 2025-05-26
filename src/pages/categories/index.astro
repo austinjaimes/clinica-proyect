@@ -1,0 +1,25 @@
+---
+import CategoryCloud from "@/components/category-cloud/CategoryCloud.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+	title="Categories"
+	description="Learn from our blog posts about web development, design, and more."
+>
+	<section class="site-container py-24 md:pt-40">
+		<div class="overflow-x-clip">
+			<div class="mr-auto flex max-w-[950px] flex-col">
+				<h1 class="h1">Blog Post and Article Categories</h1>
+				<p class="text-muted-foreground mt-2 md:text-lg">
+					Lorem ipsum dolor sit amet, consectetury adipiscing elit. Volutpat, tempor to after
+					condimentum commodo
+				</p>
+			</div>
+
+			<div class="mt-6 flex pb-16">
+				<CategoryCloud />
+			</div>
+		</div>
+	</section>
+</BaseLayout>

@@ -1,0 +1,18 @@
+---
+import FaqAccordionsLarge from "@/components/faq/FaqAccordionsLarge.astro";
+import FaqAccordionsSideImage from "@/components/faq/FaqAccordionsSideImage.astro";
+import HeroSwoosh from "@/components/hero/HeroSwoosh.astro";
+import { getLocaleFromUrl } from "@/js/localeUtils";
+import { getTranslatedData } from "@/js/translationUtils";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const currLocale = getLocaleFromUrl(Astro.url);
+const siteData = getTranslatedData("siteData", currLocale);
+---
+
+<BaseLayout title={siteData.title} description={siteData.description} navStyle="default">
+	<HeroSwoosh />
+
+	<FaqAccordionsSideImage />
+	<FaqAccordionsLarge />
+</BaseLayout>

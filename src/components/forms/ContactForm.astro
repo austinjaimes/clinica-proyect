@@ -1,0 +1,105 @@
+---
+import Button from "@/components/button/Button.astro";
+import { Checkbox } from "@/components/starwind/checkbox";
+import { Input } from "@/components/starwind/input";
+import { Label } from "@/components/starwind/label";
+import {
+	Select,
+	SelectContent,
+	SelectGroup,
+	SelectItem,
+	SelectLabel,
+	SelectSeparator,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/starwind/select";
+import { Textarea } from "@/components/starwind/textarea";
+import { getLocaleFromUrl } from "@/js/localeUtils";
+import { getLocalizedRoute, getTranslatedData, useTranslations } from "@/js/translationUtils";
+
+const currLocale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(currLocale);
+---
+
+<form id="contact-form" class="flex flex-col gap-6">
+	<div class="flex flex-col">
+		<Label for="full-name">Full Name</Label>
+		<Input type="text" name="full-name" class="min-h-12 px-4 py-3" placeholder="John Doe" />
+	</div>
+	<div class="flex flex-col">
+		<Label for="email">Email Address</Label>
+		<Input type="email" name="email" class="min-h-12 px-4 py-3" placeholder="johndoe@example.com" />
+	</div>
+	<div class="flex flex-col">
+		<Label for="phone">Phone Number</Label>
+		<Input type="tel" name="phone" class="min-h-12 px-4 py-3" placeholder="(555) 123-4567" />
+	</div>
+	<div class="flex flex-col">
+		<Label for="reason">Reason for Contact</Label>
+		<Select name="reason">
+			<SelectTrigger class="min-h-12 w-full px-4 py-3">
+				<SelectValue placeholder="Select a reason" />
+			</SelectTrigger>
+			<SelectContent>
+				<SelectGroup>
+					<SelectItem value="appointment-scheduling">Appointment Scheduling</SelectItem>
+					<SelectItem value="medical-records">Medical Records</SelectItem>
+					<SelectItem value="billing-inquiry">Billing Inquiry</SelectItem>
+					<SelectItem value="general-information">General Information</SelectItem>
+					<SelectItem value="other">Other</SelectItem>
+				</SelectGroup>
+			</SelectContent>
+		</Select>
+	</div>
+	<div class="flex flex-col">
+		<Label for="existing-patient" class="mb-1">Are you an existing patient?</Label>
+		<div class="flex gap-1">
+			<Checkbox id="existing-patient" variant="primary" name="existing-patient" /><p>Yes</p>
+		</div>
+	</div>
+	<div class="flex flex-col">
+		<Label for="message">Your Message</Label>
+		<Textarea
+			name="message"
+			class="min-h-12 px-4 py-3"
+			placeholder="How can we help you?"
+			rows={4}
+		/>
+	</div>
+	<div class="mt-2 flex flex-col">
+		<div class="flex gap-1">
+			<Label for="consent" class="sr-only">Consent</Label>
+			<Checkbox id="consent" variant="primary" name="consent" /><p>
+				I consent to having this website store my submitted information
+			</p>
+		</div>
+	</div>
+	<div>
+		<Button variant="primary" type="submit" class="w-full py-3 text-lg">Send Message</Button>
+	</div>
+</form>
+
+<script>
+	function handleFormSubmit() {
+		const form = document.querySelector("#contact-form") as HTMLFormElement;
+		if (form) {
+			form.addEventListener("submit", (e) => {
+				e.preventDefault();
+				const formData = new FormData(form);
+				const formValues = Object.fromEntries(formData.entries());
+
+				// demo form data logging
+				console.log("Form submission values:", formValues);
+
+				// You can add additional logic here like:
+				// - Form validation
+				// - API submission
+				// - Success/error handling
+			});
+		}
+	}
+
+	handleFormSubmit();
+
+	document.addEventListener("astro:after-swap", handleFormSubmit);
+</script>

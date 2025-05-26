@@ -1,0 +1,61 @@
+---
+import Divider from "@/components/divider/Divider.astro";
+import ContactForm from "@/components/forms/ContactForm.astro";
+import { getLocaleFromUrl } from "@/js/localeUtils";
+import { getLocalizedRoute, getTranslatedData, useTranslations } from "@/js/translationUtils";
+const currLocale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(currLocale);
+---
+
+<section id="contact" class="site-container my-20 scroll-mt-20 md:my-32">
+	<!-- <div class="grid items-center gap-4 md:grid-cols-2 md:gap-8">
+		<h2 class="h2">We Are Accepting New Patients</h2>
+		<Divider class="hidden md:block" />
+	</div> -->
+
+	<div class="mt-6 grid gap-10 lg:grid-cols-2">
+		<div class="">
+			<h2 class="h1 text-primary">Book Your Appointment</h2>
+			<p class="text-muted-foreground mt-4 mb-8 text-lg">
+				We're here to help with all your medical needs. Feel free to request an appointment or ask
+				us a question.
+			</p>
+			<div class="mb-8">
+				<h3 class="font-heading mb-4 text-xl leading-normal font-bold">Office Hours</h3>
+				<p class="text-muted-foreground">Monday - Friday: 8:00 AM - 6:00 PM</p>
+				<p class="text-muted-foreground">Saturday: 9:00 AM - 1:00 PM</p>
+				<p class="text-muted-foreground">Sunday: Closed</p>
+			</div>
+			<div class="mb-8">
+				<h3 class="font-heading mb-4 text-xl leading-normal font-bold">Contact Information</h3>
+				<p class="text-muted-foreground mb-2">
+					<span class="font-semibold">Phone:</span>
+					(555) 123-4567
+				</p>
+				<p class="text-muted-foreground mb-2">
+					<span class="font-semibold">Email:</span>
+					<a
+						class="text-foreground hover:text-primary underline hover:no-underline"
+						href={getLocalizedRoute(currLocale, `mailto:info@medicaloffice.com`)}
+						>info@medicaloffice.com</a
+					>
+				</p>
+			</div>
+			<div class="mb-8">
+				<h3 class="font-heading mb-4 text-xl leading-normal font-bold">Our Location</h3>
+				<p class="text-muted-foreground">
+					For emergencies, please call our 24/7 hotline:
+					<span class="font-semibold">(555) 911-0000</span>
+				</p>
+			</div>
+		</div>
+		<div class="">
+			<div class="bg-primary-100/80 rounded-xl p-8 shadow-md">
+				<h3 class="font-heading tracking-px-n mb-6 text-3xl leading-tight font-bold">
+					Send Us A Message
+				</h3>
+				<ContactForm />
+			</div>
+		</div>
+	</div>
+</section>

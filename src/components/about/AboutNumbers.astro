@@ -1,0 +1,70 @@
+---
+import background from "@images/about/numbers_bg-2-min.png";
+import { Image } from "astro:assets";
+
+import Divider from "@/components/divider/Divider.astro";
+import { getLocaleFromUrl } from "@/js/localeUtils";
+import { getLocalizedRoute, getTranslatedData, useTranslations } from "@/js/translationUtils";
+
+const currLocale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(currLocale);
+
+interface StatItem {
+	value: string;
+	label: string;
+}
+
+const stats: StatItem[] = [
+	{
+		value: "7",
+		label: "Years In Business",
+	},
+	{
+		value: "500+",
+		label: "Happy Patients",
+	},
+	{
+		value: "6",
+		label: "Expert Doctors",
+	},
+	{
+		value: "1",
+		label: "Convenient Location",
+	},
+];
+---
+
+<section class="relative overflow-hidden px-4 py-12 md:py-16">
+	<div class="site-container relative overflow-hidden rounded-2xl py-6 md:rounded-3xl md:py-12">
+		<div class="absolute inset-0 z-0">
+			<Image
+				src={background}
+				alt="Space Coast Medicine Statistical Background"
+				width={1400}
+				densities={[1.5, 2]}
+				class="h-full w-full object-cover"
+			/>
+		</div>
+		<div class="bg-primary/60 absolute inset-0 z-10"></div>
+		<div class="site-container relative z-20">
+			<div
+				id="about-numbers-trigger"
+				class="md:divide-background grid grid-cols-2 gap-6 text-center md:grid-cols-4 md:gap-0 md:divide-x"
+			>
+				{
+					stats.map((stat, index) => (
+						<div
+							class="font-heading space-y-1.5 py-10 font-extrabold md:px-4"
+							data-aos="fade-up"
+							data-aos-trigger="#about-numbers-trigger"
+							data-aos-delay={index * 0.15}
+						>
+							<p class="text-base-50 text-5xl md:text-6xl">{stat.value}</p>
+							<p class="text-base-50 text-lg md:text-xl">{stat.label}</p>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</div>
+</section>

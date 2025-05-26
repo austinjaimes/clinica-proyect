@@ -1,0 +1,18 @@
+---
+import HeroSwoosh from "@/components/hero/HeroSwoosh.astro";
+import ServicesCards from "@/components/services/ServicesCards.astro";
+import ServicesSwiper from "@/components/services/ServicesSwiper.astro";
+import { getLocaleFromUrl } from "@/js/localeUtils";
+import { getTranslatedData } from "@/js/translationUtils";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const currLocale = getLocaleFromUrl(Astro.url);
+const siteData = getTranslatedData("siteData", currLocale);
+---
+
+<BaseLayout title={siteData.title} description={siteData.description} navStyle="default">
+	<HeroSwoosh />
+
+	<ServicesCards />
+	<ServicesSwiper />
+</BaseLayout>

@@ -1,0 +1,80 @@
+---
+import doctorImage from "@images/card_bg-min.png"; // Use a doctor image for the left side
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+
+import Divider from "@/components/divider/Divider.astro";
+import { getLocaleFromUrl } from "@/js/localeUtils";
+
+const currLocale = getLocaleFromUrl(Astro.url);
+
+const aboutCardsData = [
+	{
+		title: "Patient-Centered Care",
+		description:
+			"At Space Coast Medicine, our doctors believe in treating the whole person, not just the symptoms. We prioritize personalized care plans tailored to your unique health needs and goals.",
+		icon: "tabler/clipboard-heart",
+	},
+	{
+		title: "Preventive Medicine",
+		description:
+			"We focus on disease prevention and early detection through regular screenings, vaccinations, and lifestyle counseling. Our goal is to keep you healthy, not just treat you when you're sick.",
+		icon: "tabler/heart-check",
+	},
+	{
+		title: "Compassionate Staff",
+		description:
+			"Our team of experienced healthcare professionals is committed to providing empathetic care with dignity and respect. We take the time to listen and understand your concerns.",
+		icon: "tabler/nurse",
+	},
+];
+---
+
+<section
+	id="testimonials-side"
+	class="from-primary-500/20 to-background my-12 rounded-b-2xl bg-gradient-to-t py-12 md:rounded-b-3xl"
+>
+	<div class="site-container mt-12 grid gap-8 lg:grid-cols-2 lg:gap-20">
+		<div
+			class="bg-primary/10 relative flex aspect-7/8 items-center justify-center rounded-2xl p-6 pt-20 md:px-10"
+			data-aos="fade-right"
+		>
+			<div class="bg-primary-600 absolute inset-0 h-full w-full overflow-hidden rounded-xl">
+				<Image
+					src={doctorImage}
+					alt="Testimonial background"
+					width={500}
+					densities={[1.5, 2]}
+					class="h-full w-full object-cover mix-blend-overlay"
+				/>
+			</div>
+
+			<div class="text-muted relative mb-auto flex flex-col items-center text-center">
+				<div>
+					<h2 class="h1 text-pretty text-white">What Makes Our Medical Practice Different</h2>
+				</div>
+			</div>
+		</div>
+
+		<div class="flex flex-col justify-between gap-8 md:py-10" data-aos="fade-left">
+			{
+				aboutCardsData.map((card, idx) => (
+					<>
+						{idx > 0 && <Divider />}
+						<div class="">
+							<div class="flex items-center gap-4">
+								<div class="shrink-0">
+									<Icon name={card.icon} class="text-accent-500/80 size-14" />
+								</div>
+								<div>
+									<h3 class="text-primary h2">{card.title}</h3>
+								</div>
+							</div>
+							<p class="text-muted-foreground mt-4 md:text-lg">{card.description}</p>
+						</div>
+					</>
+				))
+			}
+		</div>
+	</div>
+</section>

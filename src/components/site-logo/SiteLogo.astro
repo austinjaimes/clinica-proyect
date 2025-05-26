@@ -1,0 +1,20 @@
+---
+import Logo from "@images/logo.svg";
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+
+import { getLocaleFromUrl } from "@/js/localeUtils";
+import { getLocalizedRoute } from "@/js/translationUtils";
+import { getTranslatedData } from "@/js/translationUtils";
+
+const currLocale = getLocaleFromUrl(Astro.url);
+const siteData = getTranslatedData("siteData", currLocale);
+---
+
+<a
+	class="primary-focus font-heading flex h-10 items-center gap-2 text-lg font-medium"
+	href={getLocalizedRoute(currLocale, "/")}
+>
+	<Logo class="w-12" />
+	<p class="">{siteData.name}</p>
+</a>

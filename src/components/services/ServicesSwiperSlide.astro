@@ -1,0 +1,56 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+
+import { getLocaleFromUrl } from "@/js/localeUtils";
+import { getLocalizedRoute, getTranslatedData, useTranslations } from "@/js/translationUtils";
+
+interface Props {
+	service: CollectionEntry<"services">;
+}
+
+const { service } = Astro.props;
+
+const currLocale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(currLocale);
+---
+
+<div class="swiper-slide p-4">
+	<div
+		class="border-primary group hover:bg-primary relative mx-auto h-full max-w-[300px] rounded-xl border-2 p-6 transition-colors"
+	>
+		<a
+			class="absolute inset-0"
+			aria-label={service.data.title}
+			href={getLocalizedRoute(currLocale, `/services/${service.id}`)}
+		>
+			<span class="sr-only">{service.data.title}</span>
+		</a>
+		<h3
+			class="text-primary font-heading group-hover:text-primary-foreground mb-2 text-xl font-extrabold transition-colors"
+		>
+			{service.data.title}
+		</h3>
+		<p
+			class="text-muted-foreground group-hover:text-primary-foreground mb-4 text-sm transition-colors"
+		>
+			{service.data.description}
+		</p>
+
+		<div class="aspect-square w-full overflow-hidden rounded-lg">
+			{
+				service.data.image ? (
+					<Image
+						src={service.data.image}
+						alt={`Image for ${service.data.title}`}
+						width={400}
+						densities={[1.5, 2]}
+						class="h-full w-full object-cover"
+					/>
+				) : (
+					<div class="h-full w-full" />
+				)
+			}
+		</div>
+	</div>
+</div>

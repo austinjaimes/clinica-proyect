@@ -1,0 +1,47 @@
+---
+/**
+ * * FAQ section in accordions
+ */
+
+import Divider from "@/components/divider/Divider.astro";
+import { getLocaleFromUrl } from "@/js/localeUtils";
+import { getTranslatedData } from "@/js/translationUtils";
+
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./accordion";
+
+const currLocale = getLocaleFromUrl(Astro.url);
+const faqData = getTranslatedData("faqData", currLocale);
+---
+
+<section id="faq-accordions" class="my-20">
+	<div class="site-container">
+		<div class="mx-auto mb-16 text-center md:max-w-2xl" data-aos="fade-up">
+			<h2 class="h1 text-primary">Frequently Asked Questions</h2>
+			<p class="text-muted-foreground mt-4 md:text-lg">
+				If your question is not answered here please call or message our office.
+			</p>
+		</div>
+		<div
+			class="mx-auto mt-10 flex max-w-4xl flex-col gap-3"
+			data-aos="fade-up"
+			data-aos-delay="0.3"
+		>
+			<Accordion class="" defaultValue="item-0">
+				{
+					faqData.map((faqItem, idx) => (
+						<AccordionItem value={`item-${idx}`} class="">
+							<AccordionTrigger class="hover:text-primary aria-expanded:bg-primary rounded-t-2xl rounded-b-none py-8 font-semibold aria-expanded:text-white">
+								{faqItem.question}
+							</AccordionTrigger>
+							<AccordionContent
+								class="markdown-content data-[state=open]:bg-primary-100 rounded-b-2xl"
+								details={faqItem.answer}
+							/>
+							{/* <Divider /> */}
+						</AccordionItem>
+					))
+				}
+			</Accordion>
+		</div>
+	</div>
+</section>

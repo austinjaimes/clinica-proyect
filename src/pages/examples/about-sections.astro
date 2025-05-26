@@ -1,0 +1,22 @@
+---
+import AboutNumbers from "@/components/about/AboutNumbers.astro";
+import AboutNumbersImage from "@/components/about/AboutNumbersImage.astro";
+import AboutSideCards from "@/components/about/AboutSideCards.astro";
+import AboutSideImage from "@/components/about/AboutSideImage.astro";
+import HeroSwoosh from "@/components/hero/HeroSwoosh.astro";
+import { getLocaleFromUrl } from "@/js/localeUtils";
+import { getTranslatedData } from "@/js/translationUtils";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const currLocale = getLocaleFromUrl(Astro.url);
+const siteData = getTranslatedData("siteData", currLocale);
+---
+
+<BaseLayout title={siteData.title} description={siteData.description} navStyle="default">
+	<HeroSwoosh />
+
+	<AboutNumbersImage />
+	<AboutNumbers />
+	<AboutSideCards />
+	<AboutSideImage />
+</BaseLayout>

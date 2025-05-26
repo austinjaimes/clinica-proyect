@@ -1,0 +1,127 @@
+---
+import type { MarkdownHeading } from "astro";
+import { Image } from "astro:assets";
+import { type CollectionEntry, getEntries } from "astro:content";
+
+import Button from "@/components/button/Button.astro";
+import Category from "@/components/category/Category.astro";
+import { getLocaleFromUrl } from "@/js/localeUtils";
+import { formatDate, humanize, slugify } from "@/js/textUtils";
+import { getLocalizedRoute, useTranslations } from "@/js/translationUtils";
+
+import BaseLayout from "./BaseLayout.astro";
+
+interface Props {
+	post: CollectionEntry<"blog">;
+	headings: MarkdownHeading[];
+}
+
+const { post } = Astro.props as Props;
+const { title, description, authors, categories, pubDate, updatedDate, heroImage } = post.data;
+
+const currLocale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(currLocale);
+const authorsData = await getEntries(authors);
+---
+
+<BaseLayout
+	type="blog"
+	title={title}
+	description={description}
+	image={heroImage}
+	authorsData={authorsData}
+	postFrontmatter={post.data}
+>
+	<article class="site-container mt-24">
+		<!-- Blog post info -->
+		<div class="flex w-full flex-col items-center">
+			<div class="mx-auto flex w-full max-w-[800px]">
+				<div class="mx-auto text-center">
+					<!-- Categories -->
+					<div class="flex justify-center gap-4">
+						{categories.map((category) => <Category category={category} />)}
+					</div>
+
+					<!-- title -->
+					<h1 class="h1 mt-6">{title}</h1>
+
+					<div
+						class="text-muted-foreground mt-6 flex w-full flex-wrap items-center justify-center gap-3 font-medium"
+					>
+						<!-- author info -->
+						{
+							authorsData.map((authorData) => (
+								<div class="mb-auto flex">
+									<figure class="aspect-square size-8 overflow-clip rounded-full">
+										<Image
+											src={authorData.data.avatar}
+											alt={`${authorData.data.name} avatar`}
+											width={100}
+											quality="high"
+											loading="eager"
+											class="h-full w-full rounded-full object-cover"
+										/>
+									</figure>
+									<div class="my-auto ml-2">{authorData.data.name}</div>
+								</div>
+							))
+						}
+
+						<span>&bull;</span>
+
+						<!-- Date -->
+						<time class="my-auto h-full" datetime={pubDate.toISOString()}
+							>{formatDate(pubDate, currLocale)}
+						</time>
+					</div>
+				</div>
+			</div>
+
+			<!-- blog post main image -->
+			{
+				heroImage && (
+					<div class="mt-6 max-w-[1000px] overflow-hidden rounded-xl md:rounded-2xl">
+						<Image
+							src={heroImage}
+							alt={`Cover for ${title}`}
+							width={1000}
+							densities={[1.5, 2]}
+							quality="high"
+							class="max-h-[70vh] rounded-xl object-cover md:rounded-2xl"
+							loading="eager"
+							format="webp"
+							transition:name={`post-image-${post.id}`}
+						/>
+					</div>
+				)
+			}
+		</div>
+
+		<!-- article content -->
+		<div class="mt-10 w-full">
+			<div class="mx-auto max-w-2xl">
+				<div class="text-base-content text-base">
+					{
+						updatedDate && (
+							<div class="text-muted-foreground mb-6 italic">
+								<time datetime={updatedDate.toISOString()}>
+									{t("updated")}: {formatDate(updatedDate, currLocale)}
+								</time>
+							</div>
+						)
+					}
+					<section id="blog-post-content" class="markdown-content mx-auto">
+						<slot />
+					</section>
+
+					<!-- button to go back to all posts -->
+					<div class="mt-16 flex justify-center">
+						<Button variant="primary" href={getLocalizedRoute(currLocale, "/blog")}>
+							{t("back_to_all_posts")}
+						</Button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</article>
+</BaseLayout>

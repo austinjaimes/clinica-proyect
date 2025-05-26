@@ -1,0 +1,102 @@
+---
+import SiteLogo from "@/components/site-logo/SiteLogo.astro";
+import SocialIcon from "@/components/social-icon/SocialIcon.astro";
+import { getLocaleFromUrl } from "@/js/localeUtils";
+import { getTranslatedData } from "@/js/translationUtils";
+
+import FooterLink from "./FooterLink.astro";
+
+const currLocale = getLocaleFromUrl(Astro.url);
+const siteData = getTranslatedData("siteData", currLocale);
+const today = new Date();
+
+/**
+ * Footer columns and links configuration
+ * Edit this object to change column titles and links.
+ */
+const footerColumns = [
+	{
+		title: "Products",
+		links: [
+			{ label: "About", href: "#" },
+			{ label: "Leadership", href: "#" },
+			{ label: "Press/News", href: "#" },
+			{ label: "Careers/Team", href: "#" },
+			{ label: "Contact Us", href: "#" },
+		],
+	},
+	{
+		title: "Important links",
+		links: [
+			{ label: "About", href: "#" },
+			{ label: "Leadership", href: "#" },
+			{ label: "Press/News", href: "#" },
+			{ label: "Careers/Team", href: "#" },
+			{ label: "Contact Us", href: "#" },
+		],
+	},
+	{
+		title: "Company",
+		links: [
+			{ label: "About", href: "#" },
+			{ label: "Leadership", href: "#" },
+			{ label: "Press/News", href: "#" },
+			{ label: "Careers/Team", href: "#" },
+			{ label: "Contact Us", href: "#" },
+		],
+	},
+];
+---
+
+<section
+	class="from-primary-500/20 to-background mt-16 overflow-hidden rounded-t-2xl bg-gradient-to-b pt-16 pb-10 md:rounded-t-3xl"
+>
+	<div class="site-container">
+		<div class="border-b pb-16">
+			<div class="-m-8 flex flex-wrap">
+				<div class="w-full p-8 sm:w-1/2 lg:w-6/12">
+					<div class="lg:max-w-sm">
+						<SiteLogo />
+						<p class="text-muted-foreground mt-4 leading-relaxed font-medium md:max-w-xs">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lectus interdum facilisis
+							odio scelerisque vel neque.
+						</p>
+						<div class="mt-10 flex flex-wrap gap-3 lg:mt-16">
+							<SocialIcon
+								href="https://twitter.com/BowTiedWebReapr"
+								icon="tabler/brand-x"
+								social="twitter (x)"
+							/>
+							<SocialIcon
+								href="https://www.threads.com/@bowtiedwebreaper"
+								icon="tabler/brand-threads"
+								social="threads"
+							/>
+							<SocialIcon
+								href="https://www.threads.com/@bowtiedwebreaper"
+								icon="tabler/brand-instagram"
+								social="instagram"
+							/>
+						</div>
+					</div>
+				</div>
+				{
+					footerColumns.map((col) => (
+						<div class="w-full p-8 sm:w-1/2 lg:w-2/12" aria-label={col.title}>
+							<h3 class="font-heading mb-8 text-sm font-medium uppercase">{col.title}</h3>
+							<ul class="space-y-2">
+								{col.links.map((link) => (
+									<FooterLink label={link.label} href={link.href} />
+								))}
+							</ul>
+						</div>
+					))
+				}
+			</div>
+		</div>
+		<p class="text-muted-foreground py-5 text-center text-sm leading-normal font-medium">
+			Copyright {today.getFullYear()}
+			{siteData.name}. All Rights Reserved
+		</p>
+	</div>
+</section>

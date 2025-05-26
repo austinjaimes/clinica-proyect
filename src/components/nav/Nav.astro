@@ -1,0 +1,118 @@
+---
+import Button from "@/components/button/Button.astro";
+import LanguageSelect from "@/components/language-select/LanguageSelect.astro";
+import SiteLogo from "@/components/site-logo/SiteLogo.astro";
+import { getLocaleFromUrl } from "@/js/localeUtils";
+import { getTranslatedData, useTranslations } from "@/js/translationUtils";
+
+import MobileNav from "./mobile-nav/MobileNav.astro";
+import MegaMenuDropdownToggle from "./nav-dropdown/MegaMenuDropdownToggle.astro";
+import NavDropdown from "./nav-dropdown/NavDropdown.astro";
+import NavLink from "./NavLink.astro";
+
+const currLocale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(currLocale);
+const navData = getTranslatedData("navData", currLocale);
+import { locales } from "@/config/siteSettings.json";
+// console.log(JSON.stringify(navData, null, 2));
+
+interface Props {
+	navStyle?: "default" | "frosted";
+}
+
+const { navStyle = "default" } = Astro.props as Props;
+---
+
+<div
+	id="nav__container"
+	data-scrolled="false"
+	class:list={[
+		"fixed top-0 left-0 z-30 flex w-full flex-col border-b transition-all duration-300",
+		navStyle === "default"
+			? "bg-transparent data-[scrolled=false]:py-2"
+			: "bg-background/50 data-[scrolled=false]:backdrop-blur",
+		"data-[scrolled=true]:bg-background data-[scrolled=true]:border-border/20 data-[scrolled=true]:shadow-sm",
+		"border-b-transparent",
+	]}
+>
+	<div class="mx-auto flex w-full">
+		<div class="site-container flex h-14 w-full items-center">
+			<header class="relative flex w-full items-center gap-2">
+				<!-- home button / image -->
+				<div class="flex flex-auto justify-start">
+					<SiteLogo />
+				</div>
+
+				<!-- <div class="flex flex-auto justify-center">
+          
+        </div> -->
+
+				<!-- desktop nav menu -->
+				<div class="flex flex-auto justify-end">
+					<nav class="my-auto hidden lg:block">
+						<ul class="flex h-fit items-center px-4">
+							{
+								// if dropdown exists, setup the dropdown, otherwise it is just a link
+								navData.map((navItem) =>
+									"dropdown" in navItem ? (
+										// non-mobile dropdown menu
+										<li>
+											<NavDropdown navItem={navItem} />
+										</li>
+									) : (
+										// normal nav link
+										<li>
+											<NavLink {navItem} />
+										</li>
+									),
+								)
+							}
+						</ul>
+					</nav>
+
+					<Button
+						variant="outline"
+						class="my-auto hidden py-2 lg:flex"
+						href="https://cosmicthemes.com/themes/space-coast/"
+						target="_blank"
+						rel="noopener"
+					>
+						{t("nav_cta")}
+					</Button>
+
+					{locales.length > 1 && <LanguageSelect class="ml-4 hidden lg:block" />}
+
+					<!-- mobile nav menu, only load on small screens where it is visible -->
+					<div class="lg:hidden">
+						<MobileNav />
+					</div>
+				</div>
+			</header>
+		</div>
+	</div>
+</div>
+
+<script>
+	let navbar: HTMLElement | null;
+
+	function scrollHandler() {
+		if (navbar) {
+			if (window.scrollY > 50) {
+				navbar.setAttribute("data-scrolled", "true");
+			} else {
+				navbar.setAttribute("data-scrolled", "false");
+			}
+		}
+	}
+
+	function initNav() {
+		navbar = document.getElementById("nav__container");
+		window.addEventListener("scroll", scrollHandler, { passive: true });
+	}
+
+	// runs on initial page load
+	initNav();
+
+	// runs on view transitions navigation. Not needed if item has "transition:persist"
+	document.addEventListener("astro:after-swap", initNav);
+</script>

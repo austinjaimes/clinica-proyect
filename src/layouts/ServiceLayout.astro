@@ -1,0 +1,56 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+
+import AboutNumbers from "@/components/about/AboutNumbers.astro";
+import Contact from "@/components/contact/Contact.astro";
+import FaqAccordionsLarge from "@/components/faq/FaqAccordionsLarge.astro";
+import HeroSwoosh from "@/components/hero/HeroSwoosh.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+interface Props {
+	service: CollectionEntry<"services">;
+}
+
+const { service } = Astro.props as Props;
+const { data } = service;
+---
+
+<BaseLayout title={data.title} description={data.description} navStyle="default">
+	<HeroSwoosh />
+
+	<section class="site-container py-12 md:pt-20">
+		<div class="grid grid-cols-1 items-start gap-8 md:grid-cols-2">
+			<div class="flex flex-col gap-8">
+				<div class="flex flex-col gap-4">
+					<h1 class="text-primary h1">{data.titleLong}</h1>
+					<!-- <p class="text-muted-foreground text-lg">{data.description}</p> -->
+				</div>
+
+				<div class="markdown-content max-w-none">
+					<slot />
+				</div>
+			</div>
+
+			<div
+				class="order-first flex aspect-square justify-center overflow-clip rounded-2xl md:order-last md:rounded-3xl"
+			>
+				{
+					data.image && (
+						<Image
+							src={data.image}
+							alt={`${data.title} service image`}
+							width={650}
+							densities={[1.5, 2]}
+							class="h-full w-full rounded-2xl object-cover shadow-xl md:rounded-3xl"
+							loading="eager"
+						/>
+					)
+				}
+			</div>
+		</div>
+	</section>
+	<AboutNumbers />
+	<Contact />
+	<FaqAccordionsLarge />
+</BaseLayout>

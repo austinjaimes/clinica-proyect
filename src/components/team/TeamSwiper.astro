@@ -1,0 +1,142 @@
+---
+import "swiper/css";
+
+// Import doctor images (adjust paths as needed)
+import doctor1 from "@images/team/doctor_1.png";
+import doctor2 from "@images/team/doctor_2.png";
+import doctor3 from "@images/team/doctor_3.png";
+import doctor4 from "@images/team/doctor_4.png";
+import doctor5 from "@images/team/doctor_5.png";
+import ArrowLeft from "@tabler/icons/outline/arrow-left.svg";
+import ArrowRight from "@tabler/icons/outline/arrow-right.svg";
+
+import Divider from "@/components/divider/Divider.astro";
+import { getLocaleFromUrl } from "@/js/localeUtils";
+import { getLocalizedRoute, getTranslatedData, useTranslations } from "@/js/translationUtils";
+
+import SwiperSlide from "./TeamSwiperSlide.astro";
+
+const teamData: { name: string; specialty: string; description: string; image?: ImageMetadata }[] =
+	[
+		{
+			name: "Dr. Joe Smith",
+			specialty: "Dermatologist",
+			description: "Specializes in skin rashes, and cosmetic procedures.",
+			image: doctor4,
+		},
+		{
+			name: "Dr. Caitlin Jackson",
+			specialty: "Gynecology",
+			description: "Specializes in family planning, endometriosis, and pelvic floor rehab.",
+			image: doctor5,
+		},
+		{
+			name: "Dr. John Scott",
+			specialty: "Pediatrics",
+			description: "Specializes in the health of children ages 0-21.",
+			image: doctor2,
+		},
+		{
+			name: "Dr. Rebecca Black",
+			specialty: "Cardiology",
+			description: "Specializes in blood pressure management and heart disease.",
+			image: doctor3,
+		},
+	];
+
+const currLocale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(currLocale);
+---
+
+<section id="team-swiper">
+	<div class="site-container py-12 md:gap-12 lg:py-20">
+		<div class="grid items-center gap-4 md:grid-cols-2 md:gap-8">
+			<h2 class="h2">Meet Our Providers</h2>
+			<Divider class="hidden md:block" />
+		</div>
+		<div class="mt-6 grid items-center gap-4 md:grid-cols-2 md:gap-8">
+			<h3 class="text-primary h1 mr-auto max-w-xl">
+				A Team Of Expert Doctors Specializing In Primary Care
+			</h3>
+			<p class="text-base md:px-4 md:text-lg">
+				At Space Coast Medicine, our doctors believe in treating the whole person, not just the
+				symptoms. We prioritize holistic primary care and work with our patients to create
+				personalized care plans. We empower our patients to take an active role in their health
+				journey.
+			</p>
+		</div>
+	</div>
+
+	<!-- Swiper Section -->
+	<div class="mx-auto mt-8 max-w-[100rem]">
+		<div class="relative">
+			<div class="swiper team-swiper">
+				<div class="swiper-wrapper">
+					<!-- Map over teamData to generate slides using the component -->
+					{
+						teamData.map((doctor) => (
+							<SwiperSlide {...doctor} /> // Use the component and spread props
+						))
+					}
+				</div>
+			</div>
+			<div class="mt-6 flex justify-center gap-6">
+				<button
+					aria-label="Previous slide"
+					class:list={[
+						"team-swiper-button-prev border-primary text-primary not-disabled:hover:bg-primary not-disabled:hover:text-primary-foreground",
+						"rounded-full border-2 p-3 transition not-disabled:hover:text-base disabled:cursor-not-allowed disabled:opacity-50",
+					]}
+				>
+					<ArrowLeft class="size-8" />
+				</button>
+				<button
+					aria-label="Next slide"
+					class:list={[
+						"team-swiper-button-next border-primary text-primary not-disabled:hover:bg-primary not-disabled:hover:text-primary-foreground",
+						"rounded-full border-2 p-3 transition not-disabled:hover:text-base disabled:cursor-not-allowed disabled:opacity-50",
+					]}
+				>
+					<ArrowRight class="size-8" />
+				</button>
+			</div>
+		</div>
+		<!-- Navigation -->
+	</div>
+</section>
+
+<script>
+	// Import Swiper and modules
+	import Swiper from "swiper";
+	import { Navigation } from "swiper/modules";
+	import type { SwiperOptions } from "swiper/types";
+
+	// Import Swiper styles
+
+	function swiperSetup() {
+		const SwiperParams: SwiperOptions = {
+			modules: [Navigation],
+			slidesPerView: 1.2,
+			spaceBetween: 36,
+			centeredSlides: true,
+			navigation: {
+				nextEl: ".team-swiper-button-next",
+				prevEl: ".team-swiper-button-prev",
+			},
+			breakpoints: {
+				768: { slidesPerView: 2.2 },
+				1024: { slidesPerView: 3.2 },
+				1280: { slidesPerView: 4, centeredSlides: false },
+			},
+		};
+
+		// Initialize Swiper
+		const swiper = new Swiper(".team-swiper", SwiperParams);
+	}
+
+	// Run on initial page load
+	swiperSetup();
+
+	// Run on view transitions navigation
+	document.addEventListener("astro:after-swap", swiperSetup);
+</script>

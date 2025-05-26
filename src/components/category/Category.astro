@@ -1,0 +1,20 @@
+---
+import { getLocaleFromUrl } from "@/js/localeUtils";
+import { humanize, slugify } from "@/js/textUtils";
+import { getLocalizedRoute } from "@/js/translationUtils";
+
+interface Props {
+	category: string;
+}
+
+const { category } = Astro.props as Props;
+
+const currLocale = getLocaleFromUrl(Astro.url);
+---
+
+<a
+	class="bg-primary-100/70 text-primary-800 hover:bg-primary-200/70 inline-block rounded-sm px-3 py-1.5 text-xs font-bold uppercase transition-colors"
+	href={getLocalizedRoute(currLocale, `/categories/${slugify(category)}`)}
+>
+	{humanize(category)}
+</a>
