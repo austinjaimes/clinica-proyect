@@ -58,15 +58,28 @@
     </div>
 
     <!-- Imagen o ilustración -->
-    <div class="relative" data-aos-trigger="#hero-shapes-trigger"
-				data-aos="fade-up"
-				data-aos-delay=".4">
-      <div class="rounded-3xl overflow-hidden shadow-xl">
-        <img src="https://elgeaditraumatologia.com/wp-content/uploads/2024/01/traumatologo-analizando-movimiento-escapula.jpg" alt="Paciente en rehabilitación" class="w-full h-auto object-cover" />
-      </div>
-      <div style="font-family: 'Inter', sans-serif;" class="absolute -bottom-4 -right-4 bg-green-600 text-white px-4 py-2 rounded-xl shadow-lg text-sm">
-        Atención personalizada y humana
-      </div>
-    </div>
+    <div class="relative h-[500px] overflow-hidden rounded-3xl shadow-xl">
+  <img
+    id="parallax-img"
+    src="https://elgeaditraumatologia.com/wp-content/uploads/2024/01/traumatologo-analizando-movimiento-escapula.jpg"
+    alt="Paciente en rehabilitación"
+    class="absolute top-0 left-0 w-full h-full object-cover will-change-transform"
+  />
+
+  <div style="font-family: 'Inter', sans-serif;" class="absolute bottom-4 right-4 bg-green-600 text-white px-4 py-2 rounded-xl shadow-lg text-sm z-10">
+    Atención personalizada y humana
+  </div>
+</div>
+
+
+
   </div>
 </section>
+<script>
+  const img = document.getElementById('parallax-img');
+  window.addEventListener('scroll', () => {
+    const rect = img.parentElement.getBoundingClientRect();
+    const offset = rect.top * 0.4; // Ajusta 0.4 para más o menos movimiento
+    img.style.transform = `translateY(${offset}px)`;
+  });
+</script>
