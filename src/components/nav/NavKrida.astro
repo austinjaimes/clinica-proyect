@@ -1,7 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 const navItems = [
-  { name: "Inicio", href: "" },
+  { name: "Inicio", href: "#inicio" },
   { name: "Servicios", href: "#services-cards" },
   { name: "¿Quiénes somos?", href: "#quienes-somos" },
   { name: "Testimonios", href: "#testimonios" },
@@ -13,7 +13,7 @@ const navItems = [
 <nav class="fixed top-0 left-0 z-50 w-full bg-white shadow-md">
   <!-- Desktop Nav -->
   <div class="hidden md:flex justify-between items-center px-8 py-4 bg-white shadow-md">
-    <a href="/">
+    <a href="#inicio">
         <img style="cursor: pointer;" class="w-36" src="https://rehabilitasport.com/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-13-at-5.41.08-PM-1.jpeg" alt=""></a>
     </a>
     <!-- <div class="text-2xl font-bold">MiLogo</div> -->
@@ -24,7 +24,7 @@ const navItems = [
 
   <!-- Mobile Nav -->
   <div class="md:hidden flex justify-between items-center px-6 py-4 bg-white shadow-md">
-    <a href="/">
+    <a href="#inicio">
     <img style="cursor: pointer;" class="w-36" src="https://rehabilitasport.com/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-13-at-5.41.08-PM-1.jpeg" alt=""></a>
     
     <!-- <div class="text-2xl font-bold">MiLogo</div> -->
