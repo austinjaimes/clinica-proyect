@@ -1,0 +1,94 @@
+---
+import { Icon } from "astro-icon/components";
+const navItems = [
+  { name: "Inicio", href: "" },
+  { name: "Servicios", href: "#services-cards" },
+  { name: "¿Quiénes somos?", href: "#quienes-somos" },
+  { name: "Testimonios", href: "#testimonios" },
+  { name: "Congreso", href: "#congreso" },
+  { name: "Contacto", href: "#contacto" },
+];
+---
+
+<nav class="fixed top-0 left-0 z-50 w-full bg-white shadow-md">
+  <!-- Desktop Nav -->
+  <div class="hidden md:flex justify-between items-center px-8 py-4 bg-white shadow-md">
+    <a href="/">
+        <img style="cursor: pointer;" class="w-36" src="https://rehabilitasport.com/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-13-at-5.41.08-PM-1.jpeg" alt=""></a>
+    </a>
+    <!-- <div class="text-2xl font-bold">MiLogo</div> -->
+    <ul class="flex gap-8 text-lg font-medium">
+      {navItems.map(item => <li><a href={item.href} class="hover:text-blue-600 transition">{item.name}</a></li>)}
+    </ul>
+  </div>
+
+  <!-- Mobile Nav -->
+  <div class="md:hidden flex justify-between items-center px-6 py-4 bg-white shadow-md">
+    <a href="/">
+    <img style="cursor: pointer;" class="w-36" src="https://rehabilitasport.com/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-13-at-5.41.08-PM-1.jpeg" alt=""></a>
+    
+    <!-- <div class="text-2xl font-bold">MiLogo</div> -->
+    <button id="hamburgerBtn" class="z-50">
+      <Icon name="tabler/menu-2" class="h-8 w-8 text-gray-700" />
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+<div
+  id="mobileMenu"
+  class="fixed inset-0 hidden bg-cover bg-center bg-black/80 backdrop-blur-sm flex items-center justify-center z-40"
+  style="background-image: url('');"
+>
+  <button id="closeBtn" class="absolute top-6 right-6 text-white z-50">
+    <Icon name="tabler/x" class="h-8 w-8" />
+  </button>
+  <ul class="flex flex-col gap-6 text-center text-white text-2xl font-semibold animate-fadeInScale">
+    {navItems.map(item => <li><a href={item.href} class="hover:text-blue-300 transition">{item.name}</a></li>)}
+  </ul>
+</div>
+</nav>
+
+<style>
+  @keyframes fadeInScale {
+    0% {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-fadeInScale {
+    animation: fadeInScale 0.4s ease-out forwards;
+  }
+</style>
+
+<script>
+  const hamburgerBtn = document.getElementById("hamburgerBtn");
+  const closeBtn = document.getElementById("closeBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  hamburgerBtn?.addEventListener("click", () => {
+    mobileMenu.classList.remove("hidden");
+    hamburgerBtn.classList.add("hidden");
+    document.body.classList.add("overflow-hidden");
+  });
+
+  closeBtn?.addEventListener("click", () => {
+    mobileMenu.classList.add("hidden");
+    hamburgerBtn.classList.remove("hidden");
+    document.body.classList.remove("overflow-hidden");
+  });
+
+  const menuLinks = mobileMenu.querySelectorAll("a");
+
+menuLinks.forEach(link => {
+  link.addEventListener("click", () => {
+    mobileMenu.classList.add("hidden");
+    hamburgerBtn.classList.remove("hidden");
+    document.body.classList.remove("overflow-hidden");
+  });
+});
+</script>

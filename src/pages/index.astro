@@ -11,6 +11,7 @@ import HeroSwoosh from "@/components/hero/HeroSwoosh.astro";
 import QuienesSomos from "@/components/hero/QuienesSomos.astro";
 import ServicesCards from "@/components/services/ServicesCards.astro";
 import TestimoniosSection from "@/components/testimonios/Testimonios.astro";
+import NavKrida from "@/components/nav/NavKrida.astro";
 import WhatsappButton from "@/components/whatsapp/WhatsappButton.astro";
 import ServicesSwiper from "@/components/services/ServicesSwiper.astro";
 import TeamSwiper from "@/components/team/TeamSwiper.astro";
@@ -25,6 +26,7 @@ const siteData = getTranslatedData("siteData", currLocale);
 ---
 
 <BaseLayout title={siteData.title} description={siteData.description} navStyle="frosted">
+	<NavKrida />
 	<WhatsappButton phone="5215512345678" tooltip="Escríbenos por WhatsApp" />
 	<!-- <HeroGlow /> -->
 	<!-- <HeroSwoosh /> -->
