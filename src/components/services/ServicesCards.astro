@@ -46,12 +46,26 @@ const orderedServices = filteredServices.sort((a, b) => {
 >
 	<div class="site-container" id="services-cards-trigger">
 		<h2
-			class="h1 text-primary mx-auto max-w-3xl text-center"
+			class="h1 text-primary mx-auto max-w-3xl text-center mb-4"
 			data-aos="fade-left"
 			data-aos-trigger="#services-cards-trigger"
 		>
-			A Wide Range Of Services For Your Health
+			Servicios
 		</h2>
+		<h2
+			class="h3 text-primary mx-auto max-w-3xl text-center mb-4"
+			data-aos="fade-left"
+			data-aos-trigger="#services-cards-trigger"
+		>Ayudamos a las personas a recuperar su salud física, mental y emocional.
+</h2>
+		<p class="h6 text-primary mx-auto max-w-3xl text-center"
+			data-aos="fade-left"
+			data-aos-trigger="#services-cards-trigger">
+			Buscamos restaurar la funcionalidad de una persona con discapacidad en distintos aspectos, como el físico, psíquico, social, educacional, profesional y ocupacional.
+			<br>
+			<br>
+			El objetivo es que la persona pueda reintegrarse a la comunidad como un miembro productivo.
+		</p>
 		<div class="mt-12 grid grid-cols-1 gap-x-8 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
 			{
 				orderedServices.map((service, idx) => (

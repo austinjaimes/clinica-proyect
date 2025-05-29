@@ -8,7 +8,10 @@ import HeroGlow from "@/components/hero/HeroGlow.astro";
 import HeroShapes from "@/components/hero/HeroShapes.astro";
 import HeroSquiggles from "@/components/hero/HeroSquiggles.astro";
 import HeroSwoosh from "@/components/hero/HeroSwoosh.astro";
+import QuienesSomos from "@/components/hero/QuienesSomos.astro";
 import ServicesCards from "@/components/services/ServicesCards.astro";
+import TestimoniosSection from "@/components/testimonios/Testimonios.astro";
+import WhatsappButton from "@/components/whatsapp/WhatsappButton.astro";
 import ServicesSwiper from "@/components/services/ServicesSwiper.astro";
 import TeamSwiper from "@/components/team/TeamSwiper.astro";
 import TestimonialsSideImage from "@/components/testimonials/TestimonialsSideImage.astro";
@@ -22,23 +25,26 @@ const siteData = getTranslatedData("siteData", currLocale);
 ---
 
 <BaseLayout title={siteData.title} description={siteData.description} navStyle="frosted">
+	<WhatsappButton phone="5215512345678" tooltip="Escríbenos por WhatsApp" />
 	<!-- <HeroGlow /> -->
 	<!-- <HeroSwoosh /> -->
 	<HeroShapes />
+	<QuienesSomos />
 	<!-- <HeroSquiggles /> -->
 
-	<TeamSwiper />
+	<!-- <TeamSwiper /> -->
 	<!-- <AboutNumbers /> -->
 
 	<!-- <ServicesSwiper /> -->
 	<ServicesCards />
+	<TestimoniosSection />
 
-	<TestimonialsSideImage />
+	<!-- <TestimonialsSideImage /> -->
 	<!-- <TestimonialsSwiper /> -->
 
-	<Contact />
+	<!-- <Contact /> -->
 	<!-- <ContactCentered /> -->
 
-	<FaqAccordionsLarge />
+	<!-- <FaqAccordionsLarge /> -->
 	<!-- <FaqAccordionsSideImage /> -->
 </BaseLayout>

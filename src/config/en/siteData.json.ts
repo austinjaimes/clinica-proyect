@@ -2,10 +2,10 @@ import { type SiteDataProps } from "../types/configDataTypes";
 
 // Update this file with your site specific information
 const siteData: SiteDataProps = {
-	name: "Space Coast Medicine",
+	name: "Rehabilita Sport",
 	// Your website's title and description (meta fields)
 	title:
-		"Space Coast Medicine - The medical website template for Astro styled with Tailwind CSS. By Cosmic Themes.",
+		"Rehabilita Sport - Expertos en Rehabilitación.",
 	description:
 		"Create a stunning medical website with our beautiful website theme designed using Astro and Tailwind CSS. Perfect for freelancers, developers, startups, and personal use.",
 

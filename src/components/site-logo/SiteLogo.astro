@@ -1,5 +1,5 @@
 ---
-import Logo from "@images/logo.svg";
+import Logo from "@images/logo.jpeg";
 import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 
@@ -15,6 +15,6 @@ const siteData = getTranslatedData("siteData", currLocale);
 	class="primary-focus font-heading flex h-10 items-center gap-2 text-lg font-medium"
 	href={getLocalizedRoute(currLocale, "/")}
 >
-	<Logo class="w-12" />
+	<Image src={Logo}  alt="Logo" width={48} class="w-12"/>
 	<p class="">{siteData.name}</p>
 </a>

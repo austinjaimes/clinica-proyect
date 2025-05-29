@@ -11,57 +11,41 @@ import { type navItem } from "../types/configDataTypes";
 // note: 1 level of dropdown is supported
 const navConfig: navItem[] = [
 	{
-		text: "Overview",
+		text: "Inicio",
 		link: "/overview",
 	},
 
 	// dropdown
 	{
-		text: "Core Pages",
+		text: "Servicios",
 		dropdown: [
 			{
-				text: "Landing One",
+				text: "Rehabilitación Física",
 				link: "/",
 			},
 			{
-				text: "Landing Two",
+				text: "Fisioterapia Deportiva",
 				link: "/examples/landing-2",
 			},
 			{
-				text: "Landing Three",
+				text: "Medicina Regenerativa",
 				link: "/examples/landing-3",
 			},
 			{
-				text: "About",
+				text: "Traumatología y Ortopedia",
 				link: "/about",
 			},
 			{
-				text: "Services",
+				text: "Tanatología",
 				link: "/services",
 			},
 			{
-				text: "Service Page",
+				text: "Geriatría",
 				link: "/services/pediatrics",
 			},
 			{
-				text: "Blog",
+				text: "Cirugía de columna",
 				link: "/blog",
-			},
-			{
-				text: "Blog Post One",
-				link: "/blog/tsconfig-paths-setup",
-			},
-			{
-				text: "Blog Post Two",
-				link: "/examples/blog-post-2",
-			},
-			{
-				text: "Categories",
-				link: "/categories",
-			},
-			{
-				text: "Elements",
-				link: "/elements",
 			},
 			// {
 			// 	text: "404",
@@ -74,15 +58,19 @@ const navConfig: navItem[] = [
 		],
 	},
 	{
-		text: "Services",
+		text: "¿Quienes somos?",
 		link: "/services",
 	},
 	{
-		text: "Blog",
+		text: "Testimonios",
 		link: "/blog",
 	},
 	{
-		text: "About",
+		text: "Congresos",
+		link: "/about",
+	},
+	{
+		text: "Contacto",
 		link: "/about",
 	},
 ];

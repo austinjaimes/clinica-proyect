@@ -1,0 +1,83 @@
+<section class="bg-gray-100 py-12 px-4 md:px-8">
+  <div class="max-w-5xl mx-auto text-center">
+    <h2 class="h1 font-extrabold text-primary mb-4">Testimonios de nuestros pacientes</h2>
+    <p class="text-gray-600 mb-8 text-2xl">Historias reales de recuperación y transformación</p>
+
+    <div class="relative bg-white rounded-xl shadow-xl overflow-hidden p-4">
+      <h3 id="testimonial-title" class="h3 font-semibold text-gray-800 italic leading-relaxed tracking-wide mb-4 border-l-4 border-primary-500 pl-4">
+        “Gracias a Rehabilita Sport volví a caminar sin dolor” – Ana G.
+      </h3>
+
+      <div class="aspect-w-16 aspect-h-9">
+        <iframe
+          id="testimonial-video"
+          style="height: 400px;"
+          src="https://www.youtube.com/embed/mNB6ZYV0Uuo"
+          title="Testimonio"
+          class="w-full h-full rounded-lg"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+
+      <div class="flex justify-between mt-6">
+        <button
+          class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition"
+          onclick="changeTestimonial(-1)"
+        >
+          ← Anterior
+        </button>
+        <button
+          class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition"
+          onclick="changeTestimonial(1)"
+        >
+          Siguiente →
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ...tu HTML... -->
+
+<script>
+  const testimonials = [
+    {
+      title: "“Gracias a Rehabilita Sport volví a caminar sin dolor” – Ana G.",
+      videoUrl: "https://www.youtube.com/embed/mNB6ZYV0Uuo",
+    },
+    {
+      title: "“Recuperé mi movilidad después de mi cirugía” – Luis R.",
+      videoUrl: "https://www.youtube.com/embed/mNB6ZYV0Uuo",
+    },
+    {
+      title: "“El tratamiento regenerativo cambió mi vida” – Carla T.",
+      videoUrl: "https://www.youtube.com/embed/mNB6ZYV0Uuo",
+    },
+    {
+      title: "“Me sentí acompañado en todo momento” – Fernando M.",
+      videoUrl: "https://www.youtube.com/embed/mNB6ZYV0Uuo",
+    },
+    {
+      title: "“Profesionalismo y calidez humana” – Patricia V.",
+      videoUrl: "https://www.youtube.com/embed/mNB6ZYV0Uuo",
+    },
+    {
+      title: "“Mi hijo se recuperó por completo” – Sonia D.",
+      videoUrl: "https://www.youtube.com/embed/mNB6ZYV0Uuo",
+    },
+    {
+      title: "“Después del PRP volví a entrenar sin problemas” – Marcos B.",
+      videoUrl: "https://www.youtube.com/embed/mNB6ZYV0Uuo",
+    },
+  ];
+
+  let current = 0;
+
+  window.changeTestimonial = function (direction) {
+    current = (current + direction + testimonials.length) % testimonials.length;
+    document.getElementById("testimonial-title").textContent = testimonials[current].title;
+    document.getElementById("testimonial-video").src = testimonials[current].videoUrl;
+  };
+</script>
