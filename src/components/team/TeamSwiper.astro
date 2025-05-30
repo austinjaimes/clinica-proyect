@@ -17,32 +17,32 @@ import { getLocalizedRoute, getTranslatedData, useTranslations } from "@/js/tran
 import SwiperSlide from "./TeamSwiperSlide.astro";
 
 const teamData: { name: string; specialty: string; description: string; image?: ImageMetadata }[] =
-	[
-		{
-			name: "Dr. Joe Smith",
-			specialty: "Dermatologist",
-			description: "Specializes in skin rashes, and cosmetic procedures.",
-			image: doctor4,
-		},
-		{
-			name: "Dr. Caitlin Jackson",
-			specialty: "Gynecology",
-			description: "Specializes in family planning, endometriosis, and pelvic floor rehab.",
-			image: doctor5,
-		},
-		{
-			name: "Dr. John Scott",
-			specialty: "Pediatrics",
-			description: "Specializes in the health of children ages 0-21.",
-			image: doctor2,
-		},
-		{
-			name: "Dr. Rebecca Black",
-			specialty: "Cardiology",
-			description: "Specializes in blood pressure management and heart disease.",
-			image: doctor3,
-		},
-	];
+	// [
+	// 	{
+	// 		name: "Dr. Joe Smith",
+	// 		specialty: "Dermatologist",
+	// 		description: "Specializes in skin rashes, and cosmetic procedures.",
+	// 		image: doctor4,
+	// 	},
+	// 	{
+	// 		name: "Dr. Caitlin Jackson",
+	// 		specialty: "Gynecology",
+	// 		description: "Specializes in family planning, endometriosis, and pelvic floor rehab.",
+	// 		image: doctor5,
+	// 	},
+	// 	{
+	// 		name: "Dr. John Scott",
+	// 		specialty: "Pediatrics",
+	// 		description: "Specializes in the health of children ages 0-21.",
+	// 		image: doctor2,
+	// 	},
+	// 	{
+	// 		name: "Dr. Rebecca Black",
+	// 		specialty: "Cardiology",
+	// 		description: "Specializes in blood pressure management and heart disease.",
+	// 		image: doctor3,
+	// 	},
+	// ];
 
 const currLocale = getLocaleFromUrl(Astro.url);
 const t = useTranslations(currLocale);
