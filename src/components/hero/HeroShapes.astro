@@ -12,6 +12,12 @@ const currLocale = getLocaleFromUrl(Astro.url);
 const t = useTranslations(currLocale);
 ---
 
+<style>
+	.mtstyle {
+		margin-top: 30px;
+	}
+</style>
+
 <section style="background-color: black;" id="inicio"
 	class:list={[
 		"relative isolate flex w-full items-center overflow-hidden",
@@ -27,7 +33,7 @@ const t = useTranslations(currLocale);
 	/> -->
 
 	<div
-		class="site-container relative flex h-full min-h-full grow flex-col items-center justify-between gap-8 md:flex-row lg:px:20"
+		class="site-container relative flex h-full min-h-full grow flex-col items-center justify-between gap-8 md:flex-row lg:px-10 mtstyle" 
 	>
 		<div id="hero-shapes-trigger" class="max-w-2xl flex-1 pt-30 md:py-44 lg:pb-50">
 			<h1
