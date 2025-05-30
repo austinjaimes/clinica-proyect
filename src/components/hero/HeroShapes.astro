@@ -12,26 +12,26 @@ const currLocale = getLocaleFromUrl(Astro.url);
 const t = useTranslations(currLocale);
 ---
 
-<section id="inicio"
+<section style="background-color: black;" id="inicio"
 	class:list={[
 		"relative isolate flex w-full items-center overflow-hidden",
 		"mx-auto rounded-b-2xl shadow-md md:rounded-b-3xl",
 	]}
 	aria-label="Hero section"
 >
-	<Image
+	<!-- <Image
 		src={backgroundImage}
 		alt="Blue healthcare background"
 		class="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover"
 		aria-hidden="true"
-	/>
+	/> -->
 
 	<div
 		class="site-container relative flex h-full min-h-full grow flex-col items-center justify-between gap-8 md:flex-row lg:px:20"
 	>
 		<div id="hero-shapes-trigger" class="max-w-2xl flex-1 pt-30 md:py-44 lg:pb-50">
 			<h1
-				style="font-family: 'Inter', sans-serif;"
+				style="font-family: 'Nunito', sans-serif; font-weight: 800;"
 				data-aos-trigger="#hero-shapes-trigger"
 				data-aos="fade-right"
 				class="text-primary leading-tighter font-heading mb-4 text-4xl font-extrabold md:text-5xl xl:text-7xl"
@@ -45,9 +45,9 @@ const t = useTranslations(currLocale);
 				data-aos="fade-right"
 				data-aos-delay=".2"
 				class="text-muted-foreground mb-8 text-lg md:text-xl"
-				style="font-family: 'Inter', sans-serif;"
+				style="font-family: 'Nunito', sans-serif; font-weight: 300;"
 			>
-				En Rehabilita Sport, somos expertos en terapia integral, medicina regenerativa y traumatología, ayudando a nuestros pacientes a volver a su mejor versión rápida y eficazmente.
+				Recupera tu mejor versión con terapia integral, medicina regenerativa y traumatología.
 			</p>
 			<Button
 				type="button"
@@ -58,7 +58,7 @@ const t = useTranslations(currLocale);
 				data-aos-trigger="#hero-shapes-trigger"
 				data-aos="fade-right"
 				data-aos-delay=".4"
-				style="font-family: 'Inter', sans-serif;"
+				style="font-family: 'Nunito', sans-serif; font-weight: 400;"
 			>
 				VER TESTIMONIOS  >
 			</Button>

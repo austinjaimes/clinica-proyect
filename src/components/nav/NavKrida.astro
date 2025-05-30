@@ -1,4 +1,7 @@
 ---
+import logoNav from "../../assets/images/logonav.png"
+import logo2 from "../../assets/images/logo2.png"
+
 import { Icon } from "astro-icon/components";
 const navItems = [
   { name: "Inicio", href: "#inicio" },
@@ -10,11 +13,11 @@ const navItems = [
 ];
 ---
 
-<nav class="fixed top-0 left-0 z-50 w-full bg-white shadow-md">
+<nav class="fixed top-0 left-0 z-50 w-full bg-transparent shadow-md">
   <!-- Desktop Nav -->
-  <div class="hidden md:flex justify-between items-center px-8 py-4 bg-white shadow-md">
+  <div class="hidden md:flex justify-between items-center px-8 py-4 bg-white/80 backdrop-blur-lg shadow-md">
     <a href="#inicio">
-        <img style="cursor: pointer;" class="w-36" src="https://rehabilitasport.com/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-13-at-5.41.08-PM-1.jpeg" alt=""></a>
+        <img style="cursor: pointer;" class="w-36" src={logoNav.src} alt=""></a>
     </a>
     <!-- <div class="text-2xl font-bold">MiLogo</div> -->
     <ul class="flex gap-8 text-lg font-medium">
@@ -23,9 +26,9 @@ const navItems = [
   </div>
 
   <!-- Mobile Nav -->
-  <div class="md:hidden flex justify-between items-center px-6 py-4 bg-white shadow-md">
+  <div class="md:hidden flex justify-between items-center px-6 py-4 bg-white/80 backdrop-blur-lg shadow-md">
     <a href="#inicio">
-    <img style="cursor: pointer;" class="w-36" src="https://rehabilitasport.com/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-13-at-5.41.08-PM-1.jpeg" alt=""></a>
+    <img style="cursor: pointer;" class="w-36" src={logoNav.src} alt=""></a>
     
     <!-- <div class="text-2xl font-bold">MiLogo</div> -->
     <button id="hamburgerBtn" class="z-50">
@@ -36,8 +39,8 @@ const navItems = [
   <!-- Mobile Menu -->
 <div
   id="mobileMenu"
-  class="fixed inset-0 hidden bg-cover bg-center bg-black/80 backdrop-blur-sm flex items-center justify-center z-40"
-  style="background-image: url('');"
+  class="mobile-bg fixed inset-0 hidden bg-cover bg-center bg-black/80 backdrop-blur-sm flex items-center justify-center z-40"
+  style={`background-image: url('${logo2.src}'); background-size: 80%; background-repeat: no-repeat; background-position: center;`}
 >
   <button id="closeBtn" class="absolute top-6 right-6 text-white z-50">
     <Icon name="tabler/x" class="h-8 w-8" />

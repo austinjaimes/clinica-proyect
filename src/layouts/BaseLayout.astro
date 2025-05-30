@@ -49,7 +49,9 @@ const currLocale = getLocaleFromUrl(Astro.url);
 			postFrontmatter={postFrontmatter ? postFrontmatter : undefined}
 			noindex={noindex}
 		/>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
 	</head>
 	<body id="body" class={` ${siteSettings.useAnimations === true ? "use-animations" : ""}`}>
 		<div id="page" class="">

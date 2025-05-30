@@ -25,6 +25,16 @@ const currLocale = getLocaleFromUrl(Astro.url);
 const siteData = getTranslatedData("siteData", currLocale);
 ---
 
+<style>
+	
+.body {
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+}
+</style>
+
 <BaseLayout title={siteData.title} description={siteData.description} navStyle="frosted">
 	<NavKrida />
 	<WhatsappButton phone="5215512345678" tooltip="Escríbenos por WhatsApp" />
