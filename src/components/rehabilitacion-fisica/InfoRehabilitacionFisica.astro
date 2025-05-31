@@ -1,0 +1,105 @@
+<style>
+    .rehab-section {
+  background-color: #0d0d0d;
+  color: white;
+  padding: 5rem 1.5rem;
+  min-height: 100vh;
+  margin-bottom: 0;
+}
+
+.rehab-intro {
+  max-width: 64rem;
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.rehab-description {
+  margin-top: 3rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  color: #d1d5db; /* gris claro */
+  font-weight: 300;
+}
+
+.rehab-content {
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.rehab-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffffff; /* azul tailwind por defecto: text-primary */
+  margin-bottom: 5rem;
+}
+
+.rehab-list {
+  color: #e5e7eb; /* texto de items */
+}
+
+.rehab-item {
+  background-color: #1f1f1f;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.3s ease;
+}
+
+.rehab-item:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+}
+
+.rehab-item-title {
+  display: block;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+</style>
+
+<section class="rehab-section">
+  <div class="rehab-intro">
+    <p class="rehab-description">
+      La rehabilitación física es un conjunto de tratamientos y ejercicios diseñados para ayudar a las personas a recuperar la movilidad, fuerza, y funcionalidad que pueden haber perdido debido a una lesión, cirugía o afección médica. El objetivo es mejorar la calidad de vida de la persona y permitirle volver a realizar sus actividades cotidianas con normalidad.
+    </p>
+  </div>
+
+  <div class="rehab-content">
+    <h2 class="rehab-title">
+      ¿Cuándo deberías ir a rehabilitación física?
+    </h2>
+    <ul class="grid md:grid-cols-2 gap-6 rehab-list">
+      <li class="rehab-item">
+        <span class="rehab-item-title">Lesiones musculares o articulares</span>
+        Esguinces, distensiones, fracturas.
+      </li>
+      <li class="rehab-item">
+        <span class="rehab-item-title">Recuperación postquirúrgica</span>
+        Por ejemplo, después de una cirugía ortopédica o artroscopia.
+      </li>
+      <li class="rehab-item">
+        <span class="rehab-item-title">Dolores crónicos</span>
+        Como dolor de espalda, cuello o rodillas.
+      </li>
+      <li class="rehab-item">
+        <span class="rehab-item-title">Accidentes</span>
+        Como caídas o accidentes de tráfico.
+      </li>
+      <li class="rehab-item">
+        <span class="rehab-item-title">Problemas neurológicos</span>
+        Como accidente cerebrovascular o parálisis.
+      </li>
+      <li class="rehab-item">
+        <span class="rehab-item-title">Trastornos respiratorios</span>
+        Como la rehabilitación pulmonar después de una enfermedad.
+      </li>
+      <li class="rehab-item md:col-span-2">
+        <span class="rehab-item-title">Enfermedades crónicas</span>
+        Como la artritis, que afecta el movimiento.
+      </li>
+    </ul>
+  </div>
+</section>

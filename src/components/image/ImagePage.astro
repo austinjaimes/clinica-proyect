@@ -1,0 +1,22 @@
+---
+const { imageUrl, title } = Astro.props;
+---
+<style>
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Comic Neue", cursive;
+    font-weight: 700;
+    font-style: normal;
+  }
+  img {
+    height: 500px;
+  }
+</style>
+
+<section class="relative">
+  <div>
+    <img class="w-full object-cover" src={imageUrl} alt="">
+    <div class="absolute inset-0 flex items-center justify-center">
+      <h3 style="font-family: 'Nunito', sans-serif; font-weight: 800; color: #ffffff;" class="text-4xl bg-opacity-50 px-4 rounded">{title}</h3>
+    </div>
+  </div>
+</section>
