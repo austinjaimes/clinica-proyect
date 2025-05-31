@@ -2,6 +2,8 @@
 import logoNav from "../../assets/images/logonav.png"
 import logo2 from "../../assets/images/logo2.png"
 
+import SiteLogo from "@/components/site-logo/SiteLogo.astro";
+
 import { Icon } from "astro-icon/components";
 const navItems = [
   { name: "Inicio", href: "#inicio" },
@@ -15,10 +17,8 @@ const navItems = [
 
 <nav class="fixed top-0 left-0 z-50 w-full bg-transparent shadow-md">
   <!-- Desktop Nav -->
-  <div class="hidden md:flex justify-between items-center px-8 py-4 bg-white/80 backdrop-blur-lg shadow-md">
-    <a href="#inicio">
-        <img style="cursor: pointer;" class="w-36" src={logoNav.src} alt=""></a>
-    </a>
+  <div class="hidden md:flex justify-between items-center px-8 py-4 bg-white/80 backdrop-blur-lg shadow-md"> 
+    <SiteLogo />
     <!-- <div class="text-2xl font-bold">MiLogo</div> -->
     <ul class="flex gap-8 text-lg font-medium">
       {navItems.map(item => <li><a href={item.href} class="hover:text-blue-600 transition">{item.name}</a></li>)}
@@ -27,8 +27,7 @@ const navItems = [
 
   <!-- Mobile Nav -->
   <div class="md:hidden flex justify-between items-center px-6 py-4 bg-white/80 backdrop-blur-lg shadow-md">
-    <a href="#inicio">
-    <img style="cursor: pointer;" class="w-36" src={logoNav.src} alt=""></a>
+    <SiteLogo />
     
     <!-- <div class="text-2xl font-bold">MiLogo</div> -->
     <button id="hamburgerBtn" class="z-50">
