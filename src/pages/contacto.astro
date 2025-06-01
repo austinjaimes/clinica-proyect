@@ -1,0 +1,103 @@
+---
+import AboutNumbers from "@/components/about/AboutNumbersImage.astro";
+import Contact from "@/components/contact/Contact.astro";
+import ContactCentered from "@/components/contact/ContactCentered.astro";
+import FaqAccordionsLarge from "@/components/faq/FaqAccordionsLarge.astro";
+import FaqAccordionsSideImage from "@/components/faq/FaqAccordionsSideImage.astro";
+import HeroGlow from "@/components/hero/HeroGlow.astro";
+import HeroShapes from "@/components/hero/HeroShapes.astro";
+import HeroSquiggles from "@/components/hero/HeroSquiggles.astro";
+import HeroSwoosh from "@/components/hero/HeroSwoosh.astro";
+import QuienesSomos from "@/components/hero/QuienesSomos.astro";
+import ServicesCards from "@/components/services/ServicesCards.astro";
+import TestimoniosSection from "@/components/testimonios/Testimonios.astro";
+import NavKrida from "@/components/nav/NavKrida.astro";
+import WhatsappButton from "@/components/whatsapp/WhatsappButton.astro";
+import VideoSection from "@/components/video/VideoSection.astro";
+import Tratamientos from "@/components/tratamientos/Tratamientos.astro";
+import ServicesSwiper from "@/components/services/ServicesSwiper.astro";
+import TeamSwiper from "@/components/team/TeamSwiper.astro";
+import TestimonialsSideImage from "@/components/testimonials/TestimonialsSideImage.astro";
+import TestimonialsSwiper from "@/components/testimonials/TestimonialsSwiper.astro";
+import { getLocaleFromUrl } from "@/js/localeUtils";
+import { getTranslatedData } from "@/js/translationUtils";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const currLocale = getLocaleFromUrl(Astro.url);
+const siteData = getTranslatedData("siteData", currLocale);
+---
+
+<style>
+	
+.body {
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+}
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.75rem;
+      margin-top: 0.25rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      margin-top: 1.5rem;
+      width: 100%;
+      padding: 0.75rem;
+      background: #0077cc;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #005fa3;
+    }
+    .hidden {
+      display: none;
+    }
+</style>
+
+<BaseLayout title={siteData.title} description={siteData.description} navStyle="frosted">
+	<NavKrida />
+	<WhatsappButton phone="5215512345678" tooltip="Escríbenos por WhatsApp" />
+	 <form name="contacto" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/gracias.html">
+    <input type="hidden" name="form-name" value="contacto">
+    <p class="hidden">
+      <label>Si eres un robot, no llenar: <input name="bot-field" /></label>
+    </p>
+
+    <h2>Contáctanos</h2>
+
+    <label for="nombre">Nombre</label>
+    <input type="text" name="nombre" id="nombre" required>
+
+    <label for="email">Correo electrónico</label>
+    <input type="email" name="email" id="email" required>
+
+    <label for="mensaje">Mensaje</label>
+    <textarea name="mensaje" id="mensaje" rows="5" required></textarea>
+
+    <button type="submit">Enviar</button>
+  </form>
+</BaseLayout>
