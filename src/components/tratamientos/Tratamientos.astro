@@ -1,0 +1,143 @@
+---
+---
+<style>
+  .carousel {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 1rem;
+  }
+
+  .carousel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .card {
+    min-width: 260px;
+    height: 460px; /* altura mayor */
+    background: #1e1e1e;
+    color: white;
+    border-radius: 1rem;
+    padding: 1rem;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    transition: transform 0.3s ease;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between; /* para separar el contenido y botón */
+  }
+
+  .card:hover {
+    transform: scale(1.05);
+  }
+
+  .card img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-text {
+    font-size: 0.95rem;
+    color: #ccc;
+    flex-grow: 1; /* para que el texto ocupe espacio y empuje el botón abajo */
+  }
+
+  .btn-read-more {
+    background-color: #3b82f6; /* azul */
+    color: white;
+    border: none;
+    padding: 0.5rem 1.25rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    font-size: 0.9rem;
+  }
+
+  .btn-read-more:hover {
+    background-color: #2563eb; /* azul más oscuro */
+  }
+
+  @media (min-width: 768px) {
+    .carousel {
+      padding-inline: 2rem;
+    }
+  }
+</style>
+
+<section class="px-6 py-20 bg-neutral-900 text-white mb-10">
+  <div class="max-w-6xl mx-auto text-center mb-12">
+    <h2 class="text-3xl md:text-5xl font-bold">Nuestros Tratamientos</h2>
+  </div>
+
+  <div class="carousel">
+    <div class="card">
+      <img src="https://ortotecsa.com/wp-content/uploads/2019/07/sala-rehabilitacion-higiene-limpieza-desinfeccion-sanidad-1080x675.jpg" alt="Terapia manual" />
+      <div class="card-title">Terapia manual</div>
+      <div class="card-text">Movilización y manipulación de articulaciones y tejidos.</div>
+      <a href="#" class="btn-read-more">Leer más</a>
+    </div>
+    <div class="card">
+      <img src="https://i0.wp.com/grupomedicosanjose.com/guaymas/wp-content/uploads/sites/9/2023/04/rehabilitacion.png?fit=1540%2C866&ssl=1" alt="Electroterapia" />
+      <div class="card-title">Electroterapia</div>
+      <div class="card-text">Tratamiento con corrientes eléctricas para aliviar el dolor.</div>
+      <a href="#" class="btn-read-more">Leer más</a>
+    </div>
+    <div class="card">
+      <img src="https://clinica25demayo.com.ar/wp-content/uploads/240515-terapia-ocupacional-rehabilitacion.jpg" alt="Reeducación postural" />
+      <div class="card-title">Reeducación postural</div>
+      <div class="card-text">Corrige la postura para prevenir lesiones.</div>
+      <a href="#" class="btn-read-more">Leer más</a>
+    </div>
+    <div class="card">
+      <img src="https://ortotecsa.com/wp-content/uploads/2019/07/sala-rehabilitacion-higiene-limpieza-desinfeccion-sanidad-1080x675.jpg" alt="Terapia deportiva" />
+      <div class="card-title">Terapia deportiva</div>
+      <div class="card-text">Recuperación y prevención de lesiones deportivas.</div>
+      <a href="#" class="btn-read-more">Leer más</a>
+    </div>
+    <div class="card">
+      <img src="https://i0.wp.com/grupomedicosanjose.com/guaymas/wp-content/uploads/sites/9/2023/04/rehabilitacion.png?fit=1540%2C866&ssl=1" alt="Masoterapia" />
+      <div class="card-title">Masoterapia</div>
+      <div class="card-text">Técnicas de masaje para relajar y rehabilitar.</div>
+      <a href="#" class="btn-read-more">Leer más</a>
+    </div>
+    <div class="card">
+      <img src="https://clinica25demayo.com.ar/wp-content/uploads/240515-terapia-ocupacional-rehabilitacion.jpg" alt="Fisioterapia respiratoria" />
+      <div class="card-title">Fisioterapia respiratoria</div>
+      <div class="card-text">Mejora la función pulmonar y la oxigenación.</div>
+      <a href="#" class="btn-read-more">Leer más</a>
+    </div>
+    <div class="card">
+      <img src="https://i0.wp.com/grupomedicosanjose.com/guaymas/wp-content/uploads/sites/9/2023/04/rehabilitacion.png?fit=1540%2C866&ssl=1" alt="Punción seca" />
+      <div class="card-title">Punción seca</div>
+      <div class="card-text">Alivio del dolor muscular mediante agujas.</div>
+      <a href="#" class="btn-read-more">Leer más</a>
+    </div>
+    <div class="card">
+      <img src="https://clinica25demayo.com.ar/wp-content/uploads/240515-terapia-ocupacional-rehabilitacion.jpg" alt="Ultrasonido terapéutico" />
+      <div class="card-title">Ultrasonido terapéutico</div>
+      <div class="card-text">Ondas sonoras para regeneración tisular.</div>
+      <a href="#" class="btn-read-more">Leer más</a>
+    </div>
+    <div class="card">
+      <img src="https://clinica25demayo.com.ar/wp-content/uploads/240515-terapia-ocupacional-rehabilitacion.jpg" alt="Ejercicio terapéutico" />
+      <div class="card-title">Ejercicio terapéutico</div>
+      <div class="card-text">Rutinas guiadas para recuperar movilidad y fuerza.</div>
+      <a href="#" class="btn-read-more">Leer más</a>
+    </div>
+  </div>
+</section>
