@@ -1,12 +1,17 @@
----
----
 <style>
+  .carousel-container {
+    position: relative;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
   .carousel {
     display: flex;
     gap: 1rem;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     padding-bottom: 1rem;
+    scroll-behavior: smooth;
   }
 
   .carousel::-webkit-scrollbar {
@@ -14,22 +19,26 @@
   }
 
   .card {
-    min-width: 260px;
-    height: 460px; /* altura mayor */
-    background: #1e1e1e;
-    color: white;
-    border-radius: 1rem;
-    padding: 1rem;
-    flex-shrink: 0;
-    scroll-snap-align: start;
-    transition: transform 0.3s ease;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    justify-content: space-between; /* para separar el contenido y botón */
-  }
+  min-width: 260px;
+  width: 260px; /* fija el ancho igual al min-width */
+  max-width: 260px; /* opcional */
+  height: 460px;
+  background: #1e1e1e;
+  color: white;
+  border-radius: 1rem;
+  padding: 1rem;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  transition: transform 0.3s ease;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+  overflow-wrap: break-word; /* para que las palabras largas se rompan */
+}
+
 
   .card:hover {
     transform: scale(1.05);
@@ -50,13 +59,17 @@
   }
 
   .card-text {
-    font-size: 0.95rem;
-    color: #ccc;
-    flex-grow: 1; /* para que el texto ocupe espacio y empuje el botón abajo */
-  }
+  font-size: 0.95rem;
+  color: #ccc;
+  flex-grow: 1;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto; /* opcional, para mejor separación de palabras */
+}
+
 
   .btn-read-more {
-    background-color: #3b82f6; /* azul */
+    background-color: #3b82f6;
     color: white;
     border: none;
     padding: 0.5rem 1.25rem;
@@ -69,7 +82,43 @@
   }
 
   .btn-read-more:hover {
-    background-color: #2563eb; /* azul más oscuro */
+    background-color: #2563eb;
+  }
+
+  /* Flechas */
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(30, 30, 30, 0.8);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+    z-index: 10;
+  }
+
+  .arrow:hover {
+    background: #3b82f6;
+  }
+
+  .arrow svg {
+    fill: white;
+    width: 20px;
+    height: 20px;
+  }
+
+  .arrow-left {
+    left: 0.5rem;
+  }
+
+  .arrow-right {
+    right: 0.5rem;
   }
 
   @media (min-width: 768px) {
@@ -81,63 +130,102 @@
 
 <section class="px-6 py-20 bg-neutral-900 text-white mb-10">
   <div class="max-w-6xl mx-auto text-center mb-12">
-    <h2 class="text-3xl md:text-5xl font-bold">Nuestros Tratamientos</h2>
+    <h2 style="font-family: 'Nunito', sans-serif; font-weight: 900;  color: #ffffff;" class="text-3xl md:text-5xl font-bold">Nuestros Tratamientos</h2>
   </div>
 
-  <div class="carousel">
-    <div class="card">
-      <img src="https://ortotecsa.com/wp-content/uploads/2019/07/sala-rehabilitacion-higiene-limpieza-desinfeccion-sanidad-1080x675.jpg" alt="Terapia manual" />
-      <div class="card-title">Terapia manual</div>
-      <div class="card-text">Movilización y manipulación de articulaciones y tejidos.</div>
-      <a href="#" class="btn-read-more">Leer más</a>
+  <div class="carousel-container max-w-6xl mx-auto">
+    <div class="arrow arrow-left" id="prevBtn" aria-label="Scroll left" role="button" tabindex="0">
+      <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
     </div>
-    <div class="card">
-      <img src="https://i0.wp.com/grupomedicosanjose.com/guaymas/wp-content/uploads/sites/9/2023/04/rehabilitacion.png?fit=1540%2C866&ssl=1" alt="Electroterapia" />
-      <div class="card-title">Electroterapia</div>
-      <div class="card-text">Tratamiento con corrientes eléctricas para aliviar el dolor.</div>
-      <a href="#" class="btn-read-more">Leer más</a>
+
+    <div class="carousel" id="carousel">
+      <!-- cartas aquí -->
+      <div class="card">
+        <img src="https://ortotecsa.com/wp-content/uploads/2019/07/sala-rehabilitacion-higiene-limpieza-desinfeccion-sanidad-1080x675.jpg" alt="Terapia manual" />
+        <div style="font-family: 'Nunito', sans-serif;" class="card-title">Terapia manual</div>
+        <div style="font-family: 'Nunito', sans-serif;" class="card-text">Movilización y manipulación de articulaciones y tejidos.</div>
+        <a href="#" class="btn-read-more">Leer más</a>
+      </div>
+      <div class="card">
+        <img src="https://i0.wp.com/grupomedicosanjose.com/guaymas/wp-content/uploads/sites/9/2023/04/rehabilitacion.png?fit=1540%2C866&ssl=1" alt="Electroterapia" />
+        <div style="font-family: 'Nunito', sans-serif;" class="card-title">Electroterapia</div>
+        <div style="font-family: 'Nunito', sans-serif;" class="card-text">Tratamiento con corrientes eléctricas para aliviar el dolor.</div>
+        <a href="#" class="btn-read-more">Leer más</a>
+      </div>
+      <div class="card">
+        <img src="https://clinica25demayo.com.ar/wp-content/uploads/240515-terapia-ocupacional-rehabilitacion.jpg" alt="Reeducación postural" />
+        <div style="font-family: 'Nunito', sans-serif;" class="card-title">Reeducación postural</div>
+        <div style="font-family: 'Nunito', sans-serif;" class="card-text">Corrige la postura para prevenir lesiones.</div>
+        <a href="#" class="btn-read-more">Leer más</a>
+      </div>
+      <div class="card">
+        <img src="https://ortotecsa.com/wp-content/uploads/2019/07/sala-rehabilitacion-higiene-limpieza-desinfeccion-sanidad-1080x675.jpg" alt="Terapia deportiva" />
+        <div style="font-family: 'Nunito', sans-serif;" class="card-title">Terapia deportiva</div>
+        <div style="font-family: 'Nunito', sans-serif;" class="card-text">Recuperación y prevención de lesiones deportivas.</div>
+        <a href="#" class="btn-read-more">Leer más</a>
+      </div>
+      <div class="card">
+        <img src="https://i0.wp.com/grupomedicosanjose.com/guaymas/wp-content/uploads/sites/9/2023/04/rehabilitacion.png?fit=1540%2C866&ssl=1" alt="Masoterapia" />
+        <div style="font-family: 'Nunito', sans-serif;" class="card-title">Masoterapia</div>
+        <div style="font-family: 'Nunito', sans-serif;" class="card-text">Técnicas de masaje para relajar y rehabilitar.</div>
+        <a href="#" class="btn-read-more">Leer más</a>
+      </div>
+      <div class="card">
+        <img src="https://clinica25demayo.com.ar/wp-content/uploads/240515-terapia-ocupacional-rehabilitacion.jpg" alt="Fisioterapia respiratoria" />
+        <div style="font-family: 'Nunito', sans-serif;" class=" style="font-family: 'Nunito', sans-serif;"card-title">Fisioterapia respiratoria</div>
+        <div class="card-text">Mejora la función pulmonar y la oxigenación.</div>
+        <a href="#" class="btn-read-more">Leer más</a>
+      </div>
+      <div class="card">
+        <img src="https://i0.wp.com/grupomedicosanjose.com/guaymas/wp-content/uploads/sites/9/2023/04/rehabilitacion.png?fit=1540%2C866&ssl=1" alt="Punción seca" />
+        <div style="font-family: 'Nunito', sans-serif;" class="card-title">Punción seca</div>
+        <div style="font-family: 'Nunito', sans-serif;" class="card-text">Alivio del dolor muscular mediante agujas.</div>
+        <a href="#" class="btn-read-more">Leer más</a>
+      </div>
+      <div class="card">
+        <img src="https://clinica25demayo.com.ar/wp-content/uploads/240515-terapia-ocupacional-rehabilitacion.jpg" alt="Ultrasonido terapéutico" />
+        <div style="font-family: 'Nunito', sans-serif;" class="card-title">Ultrasonido terapéutico</div>
+        <div style="font-family: 'Nunito', sans-serif;" class="card-text">Ondas sonoras para regeneración tisular.</div>
+        <a href="#" class="btn-read-more">Leer más</a>
+      </div>
+      <div class="card">
+        <img src="https://clinica25demayo.com.ar/wp-content/uploads/240515-terapia-ocupacional-rehabilitacion.jpg" alt="Ejercicio terapéutico" />
+        <div style="font-family: 'Nunito', sans-serif;" class="card-title">Ejercicio terapéutico</div>
+        <div style="font-family: 'Nunito', sans-serif;" class="card-text">Rutinas guiadas para recuperar movilidad y fuerza.</div>
+        <a href="#" class="btn-read-more">Leer más</a>
+      </div>
     </div>
-    <div class="card">
-      <img src="https://clinica25demayo.com.ar/wp-content/uploads/240515-terapia-ocupacional-rehabilitacion.jpg" alt="Reeducación postural" />
-      <div class="card-title">Reeducación postural</div>
-      <div class="card-text">Corrige la postura para prevenir lesiones.</div>
-      <a href="#" class="btn-read-more">Leer más</a>
-    </div>
-    <div class="card">
-      <img src="https://ortotecsa.com/wp-content/uploads/2019/07/sala-rehabilitacion-higiene-limpieza-desinfeccion-sanidad-1080x675.jpg" alt="Terapia deportiva" />
-      <div class="card-title">Terapia deportiva</div>
-      <div class="card-text">Recuperación y prevención de lesiones deportivas.</div>
-      <a href="#" class="btn-read-more">Leer más</a>
-    </div>
-    <div class="card">
-      <img src="https://i0.wp.com/grupomedicosanjose.com/guaymas/wp-content/uploads/sites/9/2023/04/rehabilitacion.png?fit=1540%2C866&ssl=1" alt="Masoterapia" />
-      <div class="card-title">Masoterapia</div>
-      <div class="card-text">Técnicas de masaje para relajar y rehabilitar.</div>
-      <a href="#" class="btn-read-more">Leer más</a>
-    </div>
-    <div class="card">
-      <img src="https://clinica25demayo.com.ar/wp-content/uploads/240515-terapia-ocupacional-rehabilitacion.jpg" alt="Fisioterapia respiratoria" />
-      <div class="card-title">Fisioterapia respiratoria</div>
-      <div class="card-text">Mejora la función pulmonar y la oxigenación.</div>
-      <a href="#" class="btn-read-more">Leer más</a>
-    </div>
-    <div class="card">
-      <img src="https://i0.wp.com/grupomedicosanjose.com/guaymas/wp-content/uploads/sites/9/2023/04/rehabilitacion.png?fit=1540%2C866&ssl=1" alt="Punción seca" />
-      <div class="card-title">Punción seca</div>
-      <div class="card-text">Alivio del dolor muscular mediante agujas.</div>
-      <a href="#" class="btn-read-more">Leer más</a>
-    </div>
-    <div class="card">
-      <img src="https://clinica25demayo.com.ar/wp-content/uploads/240515-terapia-ocupacional-rehabilitacion.jpg" alt="Ultrasonido terapéutico" />
-      <div class="card-title">Ultrasonido terapéutico</div>
-      <div class="card-text">Ondas sonoras para regeneración tisular.</div>
-      <a href="#" class="btn-read-more">Leer más</a>
-    </div>
-    <div class="card">
-      <img src="https://clinica25demayo.com.ar/wp-content/uploads/240515-terapia-ocupacional-rehabilitacion.jpg" alt="Ejercicio terapéutico" />
-      <div class="card-title">Ejercicio terapéutico</div>
-      <div class="card-text">Rutinas guiadas para recuperar movilidad y fuerza.</div>
-      <a href="#" class="btn-read-more">Leer más</a>
+
+    <div class="arrow arrow-right" id="nextBtn" aria-label="Scroll right" role="button" tabindex="0">
+      <svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
     </div>
   </div>
 </section>
+
+<script>
+  const carousel = document.getElementById('carousel');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+
+  const scrollAmount = 280; // ancho de cada card + gap (aprox)
+
+  prevBtn.addEventListener('click', () => {
+    carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+  });
+
+  nextBtn.addEventListener('click', () => {
+    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  });
+
+  // Soporte para navegación con teclado (opcional)
+  prevBtn.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    }
+  });
+  nextBtn.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  });
+</script>
