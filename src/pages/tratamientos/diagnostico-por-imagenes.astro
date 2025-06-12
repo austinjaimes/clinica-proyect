@@ -1,0 +1,23 @@
+---
+    import BaseLayout from "@/layouts/BaseLayout.astro";
+    import { getLocaleFromUrl } from "@/js/localeUtils";
+    import { getTranslatedData } from "@/js/translationUtils";
+    import NavKrida from "@/components/nav/NavKrida.astro"
+    import WhatsappButton from "@/components/whatsapp/WhatsappButton.astro"
+    import ImagePage from "@/components/image/ImagePage.astro"
+    import InfoDiagnosticoPorImagenes from "@/components/tratamientos-cards/InfoDiagnosticoPorImagenes.astro"
+
+    const currLocale = getLocaleFromUrl(Astro.url);
+    const siteData = getTranslatedData("siteData", currLocale);
+---
+
+<style>
+
+</style>
+
+<BaseLayout title={siteData.title} description={siteData.description} navStyle="frosted">
+	<NavKrida />
+	<WhatsappButton phone="5215512345678" tooltip="Escríbenos por WhatsApp" />
+    <ImagePage imageUrl="https://www.clinicacolumbia.com/wp-content/uploads/2023/06/definicion-alcance-rehabilitacion.jpg" title="Diagnóstico por imágenes" />
+    <InfoDiagnosticoPorImagenes />
+</BaseLayout>
