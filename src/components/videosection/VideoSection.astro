@@ -1,0 +1,119 @@
+---
+// Recibe la URL del video como prop
+const { videoSrc } = Astro.props;
+---
+
+<style>
+.hero-video {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  margin-top: 0px;
+}
+
+@media (max-width: 767px) {
+  .hero-video {
+    height: auto;
+    margin-top: 0px;
+    margin-bottom: -35px;
+  }
+}
+
+.hero-video-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+@media (max-width: 767px) {
+  .hero-video-bg {
+    position: static;
+    object-fit: contain;
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
+.hero-overlay {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+@media (max-width: 767px) {
+  .hero-overlay {
+    position: static;
+    height: auto;
+    background: none;
+    padding: 1rem;
+  }
+}
+
+.toggle-audio-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 3;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.toggle-audio-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+</style>
+
+<section class="hero-video" client:load>
+  <button id="toggleAudioBtn" class="toggle-audio-btn">Dejar de silenciar</button>
+
+  <video
+    id="welcomeVideo"
+    autoplay
+    muted
+    loop
+    playsinline
+    class="hero-video-bg"
+  >
+    <source src={videoSrc} type="video/mp4" />
+    Tu navegador no soporta video HTML5.
+  </video>
+
+  <div class="hero-overlay">
+    <!-- Puedes incluir aquí encabezados u otros textos -->
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const video = document.getElementById("welcomeVideo");
+      const button = document.getElementById("toggleAudioBtn");
+
+      if (video && button) {
+        button.addEventListener("click", () => {
+          video.muted = !video.muted;
+          button.textContent = video.muted ? "Dejar de silenciar" : "Silenciar";
+        });
+      }
+    });
+  </script>
+</section>

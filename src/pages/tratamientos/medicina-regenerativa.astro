@@ -6,6 +6,8 @@
     import WhatsappButton from "@/components/whatsapp/WhatsappButton.astro"
     import ImagePage from "@/components/image/ImagePage.astro"
     import InfoMedicinaRegenerativa from "@/components/medicina-regenerativa/InfoMedicinaRegenerativa.astro"
+    import VideoSection from "@/components/videosection/VideoSection.astro"
+    import videoMedicina from "../../assets/videos/videomedicina.mp4"
 
     const currLocale = getLocaleFromUrl(Astro.url);
     const siteData = getTranslatedData("siteData", currLocale);
@@ -19,5 +21,6 @@
 	<NavKrida />
 	<WhatsappButton phone="5215512345678" tooltip="Escríbenos por WhatsApp" />
     <ImagePage imageUrl="https://www.clinicacolumbia.com/wp-content/uploads/2023/06/definicion-alcance-rehabilitacion.jpg" title="Medicina regenerativa" />
+    <VideoSection videoSrc={videoMedicina} />
     <InfoMedicinaRegenerativa />
 </BaseLayout>
