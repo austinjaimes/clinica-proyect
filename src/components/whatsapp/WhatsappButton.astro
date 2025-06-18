@@ -6,7 +6,9 @@ interface Props {
 }
 
 const { phone, tooltip = "Chatea con nosotros por WhatsApp" } = Astro.props;
-const url = `https://wa.me/527331397477`;
+const phoneNum = "527331397477";
+const message = encodeURIComponent("Hola, me gustaría agendar una cita en su clínica. ¿Podrían brindarme más información, por favor?");
+const url = `https://api.whatsapp.com/send?phone=${phoneNum}&text=${message}`;
 ---
 
 <a
