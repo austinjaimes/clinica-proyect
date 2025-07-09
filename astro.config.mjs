@@ -11,7 +11,7 @@ import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
-	site: "https://space-coast.cosmicthemes.com",
+	site: "https://rehabilitasport.com",
 	adapter: netlify({
 		imageCDN: false,
 	}),
