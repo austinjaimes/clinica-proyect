@@ -5,7 +5,7 @@ const siteData: SiteDataProps = {
 	name: "Rehabilita Sport",
 	// Your website's title and description (meta fields)
 	title:
-		"Rehabilita Sport - Expertos en Rehabilitación.",
+		"Rehabilita Sport - Expertos en Rehabilitación",
 	description:
 		"Create a stunning medical website with our beautiful website theme designed using Astro and Tailwind CSS. Perfect for freelancers, developers, startups, and personal use.",
 
