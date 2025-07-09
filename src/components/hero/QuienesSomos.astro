@@ -1,5 +1,5 @@
 ---
-// components/QuienesSomos.astro
+import img from "../../assets/images/imgeffect.jpg"
 ---
 
 <style>
@@ -77,7 +77,7 @@
     <div class="relative h-[500px] overflow-hidden rounded-3xl shadow-xl">
   <img
     id="parallax-img"
-    src="https://elgeaditraumatologia.com/wp-content/uploads/2024/01/traumatologo-analizando-movimiento-escapula.jpg"
+    src={img.src}
     alt="Paciente en rehabilitación"
     class="absolute top-0 left-0 w-full h-full object-cover will-change-transform"
   />
