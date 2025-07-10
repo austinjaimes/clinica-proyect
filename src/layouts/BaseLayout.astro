@@ -63,7 +63,6 @@ const currLocale = getLocaleFromUrl(Astro.url);
 			</main>
 			<Footer />
 		</div>
-
 		<!-- Scroll animations -->
 		<script>
 			import siteSettings from "@/config/siteSettings.json";
@@ -77,5 +76,6 @@ const currLocale = getLocaleFromUrl(Astro.url);
 				document.addEventListener("astro:after-swap", AOS.refreshHard);
 			}
 		</script>
+		<script src="/nav.js" defer></script>
 	</body>
 </html>
