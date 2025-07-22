@@ -1,0 +1,136 @@
+---
+const videos = [
+  {
+    title: "Procedimiento de mínima invasión",
+    url: "https://www.youtube.com/embed/Ua4AEQpGo94"
+  },
+  {
+    title: "Traumatología en el quirófano",
+    url: "https://www.youtube.com/embed/jbe9jWsxAnw"
+  },
+  {
+    title: "Traumatología en el quirófano",
+    url: "https://www.youtube.com/embed/qGbgOcEFKg0"
+  }
+];
+---
+
+<style>
+.video-section {
+  padding: 4rem 1rem;
+  font-family: 'Nunito', sans-serif;
+  text-align: center;
+  background-color: #1a1a1a; /* Para hacer el fondo oscuro */
+}
+
+.video-tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.tab-button {
+  padding: 0.5rem 1.25rem;
+  font-size: 1rem;
+  border: none;
+  background-color: transparent;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  color: #ccc;
+  transition: all 0.3s ease;
+}
+
+.tab-button.active {
+  border-color: #00b4d8;
+  color: #00b4d8;
+  font-weight: bold;
+}
+
+.video-frame-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Reducir altura en pantallas grandes */
+@media (min-width: 1024px) {
+  .video-frame-wrapper {
+    padding-bottom: 40%;
+  }
+}
+
+.video-frame-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  opacity: 0;
+  z-index: 0;
+  transition: opacity 0.4s ease;
+}
+
+.video-frame-wrapper iframe.active {
+  opacity: 1;
+  z-index: 1;
+}
+</style>
+
+<section class="video-section">
+  <h2 style="font-family: 'Nunito', sans-serif; font-weight: 900; color: #ffffff;" class="text-3xl md:text-5xl font-bold mb-10">
+    Ejemplos de Tratamientos
+  </h2>
+
+  <!-- Tabs -->
+  <div class="video-tabs" id="tabs">
+    {videos.map((video, index) => (
+      <button
+        type="button"
+        class={`tab-button ${index === 0 ? 'active' : ''}`}
+        data-index={index}
+      >
+        {video.title}
+      </button>
+    ))}
+  </div>
+
+  <!-- Video Frames -->
+  <div class="video-frame-wrapper">
+    {videos.map((video, index) => (
+      <iframe
+        class={index === 0 ? 'active' : ''}
+        src={video.url}
+        title={video.title}
+        allowfullscreen
+        data-frame-index={index}
+      ></iframe>
+    ))}
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const buttons = document.querySelectorAll(".tab-button");
+      const frames = document.querySelectorAll("iframe[data-frame-index]");
+
+      buttons.forEach((btn, index) => {
+        btn.addEventListener("click", () => {
+          buttons.forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+
+          frames.forEach((frame, i) => {
+            frame.classList.toggle("active", i === index);
+          });
+        });
+      });
+    });
+  </script>
+</section>
