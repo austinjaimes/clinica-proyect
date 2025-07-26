@@ -40,19 +40,30 @@ const currLocale = getLocaleFromUrl(Astro.url);
 <!doctype html>
 <html lang={currLocale} transition:animate="fade">
 	<head>
-		<BaseHead
-			type={type}
-			title={title}
-			description={description}
-			image={image ? image : undefined}
-			authors={authorsData ? authorsData : undefined}
-			postFrontmatter={postFrontmatter ? postFrontmatter : undefined}
-			noindex={noindex}
-		/>
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
-	</head>
+  <BaseHead
+    type={type}
+    title={title}
+    description={description}
+    image={image ? image : undefined}
+    authors={authorsData ? authorsData : undefined}
+    postFrontmatter={postFrontmatter ? postFrontmatter : undefined}
+    noindex={noindex}
+  />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GPLHNSMNRK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-GPLHNSMNRK');
+  </script>
+
+  <!-- Tipografía Nunito -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+</head>
 	<body id="body" class={` ${siteSettings.useAnimations === true ? "use-animations" : ""}`}>
 		<div id="page" class="">
 			<!-- put cookie consent first so it is seen first by screen readers -->
