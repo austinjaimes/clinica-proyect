@@ -1,7 +1,6 @@
 ---
 import Logo from "@images/logonav.png";
 import { Image } from "astro:assets";
-import { Icon } from "astro-icon/components";
 
 import { getLocaleFromUrl } from "@/js/localeUtils";
 import { getLocalizedRoute } from "@/js/translationUtils";
@@ -9,12 +8,15 @@ import { getTranslatedData } from "@/js/translationUtils";
 
 const currLocale = getLocaleFromUrl(Astro.url);
 const siteData = getTranslatedData("siteData", currLocale);
+
+const localizedHome = getLocalizedRoute(currLocale, "/");
 ---
 
-<a
-	class="primary-focus font-heading flex items-center gap-2 text-lg font-medium"
-	href={getLocalizedRoute(currLocale, "/")}
+<button
+  class="primary-focus font-heading flex items-center gap-2 text-lg font-medium cursor-pointer bg-transparent border-0 p-0"
+  onclick={`window.location.href='${localizedHome}'`}
+  aria-label="Ir al inicio"
 >
-	<Image src={Logo}  alt="Logo" class="w-36"/>
-	<!-- <p class="">{siteData.name}</p> -->
-</a>
+  <Image src={Logo} alt="Logo" class="w-36" />
+  <!-- <p>{siteData.name}</p> -->
+</button>
