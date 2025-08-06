@@ -25,7 +25,7 @@ import videoWelcome from "../../assets/videos/videowelcome.mp4"
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* ESTO SE QUITA  */
+  object-fit: cover;
   z-index: 1;
 }
 
@@ -93,6 +93,7 @@ import videoWelcome from "../../assets/videos/videowelcome.mp4"
     muted
     loop
     playsinline
+    preload="auto"
     class="hero-video-bg"
   >
     <source src={videoWelcome} type="video/mp4" />
@@ -115,6 +116,16 @@ import videoWelcome from "../../assets/videos/videowelcome.mp4"
           button.textContent = video.muted ? "Dejar de silenciar" : "Silenciar";
         });
       }
+
+      // 🔁 Recargar el video si se vuelve a la página desde el historial (iOS Safari fix)
+      window.addEventListener("pageshow", function (event) {
+        const video = document.getElementById("welcomeVideo");
+        if (event.persisted || (window.performance && performance.navigation.type === 2)) {
+          if (video) {
+            video.load(); // recarga el video manualmente
+          }
+        }
+      });
     });
   </script>
 </section>
