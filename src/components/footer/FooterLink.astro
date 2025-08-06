@@ -1,20 +1,40 @@
 ---
 import { getLocaleFromUrl } from "@/js/localeUtils";
 import { getLocalizedRoute, getTranslatedData, useTranslations } from "@/js/translationUtils";
+
 const currLocale = getLocaleFromUrl(Astro.url);
 const t = useTranslations(currLocale);
+
 type Props = {
 	label: string;
 	href: string;
 };
+
 const { label, href } = Astro.props;
+
+// Detectar si el enlace es interno (relativo a la raíz del sitio)
+const isInternal = href.startsWith("/");
+const localizedHref = getLocalizedRoute(currLocale, href);
 ---
 
-<li>
-	<a
-		href={getLocalizedRoute(currLocale, href)}
-		class="hover:text-primary text-muted-foreground transition-colors"
-	>
-		{label}
-	</a>
-</li>
+{isInternal ? (
+  <li>
+    <button
+      onclick={`window.location.href='${localizedHref}'`}
+      class="hover:text-primary text-muted-foreground transition-colors text-left"
+    >
+      {label}
+    </button>
+  </li>
+) : (
+  <li>
+    <a
+      href={href}
+      class="hover:text-primary text-muted-foreground transition-colors"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {label}
+    </a>
+  </li>
+)}
