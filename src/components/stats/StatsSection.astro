@@ -1,0 +1,64 @@
+---
+// Este componente no necesita props por ahora, pero puedes agregar si quieres.
+import { onMount } from 'solid-js';
+---
+
+<section id="stats" class="bg-neutral-900 py-16">
+  <div class="max-w-7xl mx-auto px-4 text-center">
+    <h2 style="font-family: 'Nunito', sans-serif; font-weight: 900;  color: #ffffff;" class="text-3xl md:text-5xl font-bold mb-4">
+      Nuestra Experiencia en Rehabilitación
+    </h2>
+    <p style="color: #ccc;" class="mb-12">
+      Más de 1,000 pacientes recuperados gracias a nuestros tratamientos personalizados y profesionales.
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+      <div class="stat-card p-6 bg-neutral-800 rounded-lg shadow-lg">
+        <span style="color: #4EBFE3;" class="text-5xl font-bold text-blue-600">+</span><span style="color: #4EBFE3;" class="text-5xl font-bold text-blue-600 counter" data-target="1500">0</span>
+        <p style="color: #ccc;" class="mt-2 text-gray-700 font-medium">Pacientes Recuperados</p>
+      </div>
+      <div class="stat-card p-6 bg-neutral-800 rounded-lg shadow-lg">
+        <span style="color: #4EBFE3;" class="text-5xl font-bold text-green-600 counter" data-target="10">0</span>
+        <p style="color: #ccc;" class="mt-2 text-gray-700 font-medium">Profesionales Especializados</p>
+      </div>
+      <div class="stat-card p-6 bg-neutral-800 rounded-lg shadow-lg">
+        <span style="color: #4EBFE3;" class="text-5xl font-bold text-blue-600">+</span><span style="color: #4EBFE3;" class="text-5xl font-bold text-purple-600 counter" data-target="2000">0</span>
+        <p style="color: #ccc;" class="mt-2 text-gray-700 font-medium">Sesiones Completadas</p>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    // Contador animado al hacer scroll
+    const counters = document.querySelectorAll('.counter');
+    let started = false;
+
+    function animateCounter(el, target) {
+      let current = 0;
+      const increment = Math.ceil(target / 200); // Ajusta la velocidad
+      const interval = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          el.textContent = target;
+          clearInterval(interval);
+        } else {
+          el.textContent = current;
+        }
+      }, 10);
+    }
+
+    function handleScroll() {
+      const section = document.getElementById('stats');
+      const rect = section.getBoundingClientRect();
+      if (!started && rect.top < window.innerHeight) {
+        counters.forEach(counter => {
+          const target = parseInt(counter.getAttribute('data-target'));
+          animateCounter(counter, target);
+        });
+        started = true;
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Por si ya está visible al cargar
+  </script>
+</section>
