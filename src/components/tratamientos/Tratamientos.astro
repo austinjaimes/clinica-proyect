@@ -1,3 +1,9 @@
+---
+import imgRehabilitacionIntervencionista from "../../assets/images/rehabilitacion-intervencionista.jpg"
+import imgRehabilitacionDeportiva from "../../assets/images/rehabilitacion-deportiva.png"
+import imgCirugiaColumna from "../../assets/images/cirugia-de-columna.jpg"
+---
+
 <style>
   .carousel-container {
     position: relative;
@@ -151,7 +157,7 @@
 
       <!-- carta 1 -->
       <div class="card">
-        <img src="/public/images/rehabilitacion-intervencionista.jpg" alt="Rehabilitación Intervencionista" />
+        <img src={imgRehabilitacionIntervencionista.src} alt="Rehabilitación Intervencionista" />
         <div style="font-family: 'Nunito', sans-serif;" class="card-title">Rehabilitación Intervencionista</div>
         <div style="font-family: 'Nunito', sans-serif;" class="card-text">Tratamientos precisos para el dolor y la movilidad</div>
         <button onclick="window.location.href='/tratamientos/rehabilitacion-intervencionista'" class="btn-read-more">Leer más</button>
@@ -159,7 +165,7 @@
 
       <!-- carta 2 -->
       <div class="card">
-        <img src="/public/images/rehabilitacion-deportiva.png" alt="Rehabilitación deportiva" />
+        <img src={imgRehabilitacionDeportiva.src} alt="Rehabilitación deportiva" />
         <div style="font-family: 'Nunito', sans-serif;" class="card-title">Rehabilitación deportiva</div>
         <div style="font-family: 'Nunito', sans-serif;" class="card-text">Recuperación y prevención de lesiones en deportistas.</div>
         <button onclick="window.location.href='/tratamientos/rehabilitacion-deportiva'" class="btn-read-more">Leer más</button>
@@ -167,7 +173,7 @@
 
       <!-- carta 3 -->
       <div class="card">
-        <img src="/public/images/cirugia-de-columna.jpg" alt="Cirugía de columna vertebral" />
+        <img src={imgCirugiaColumna.src} alt="Cirugía de columna vertebral" />
         <div style="font-family: 'Nunito', sans-serif;" class="card-title">Cirugía de columna vertebral</div>
         <div style="font-family: 'Nunito', sans-serif;" class="card-text">Cirugía para aliviar dolor y tratar trastornos estructurales de la columna.</div>
         <button onclick="window.location.href='/tratamientos/cirugia-de-columna-vertebral'" class="btn-read-more">Leer más</button>
