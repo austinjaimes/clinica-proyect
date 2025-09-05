@@ -1,7 +1,8 @@
 ---
 import imgRehabilitacionIntervencionista from "/public/images/rehabilitacion-intervencionista.jpg"
 import imgRehabilitacionDeportiva from "/public/images/rehabilitacion-deportiva.png"
-import imgCirugiaColumna from "/public/images/cirugia-de-columna.jpg"
+import imgCirugiaColumna from "/public/images/cirugia-de-columna-2.jpg"
+import imgMedicinaRegenerativa from "/public/images/medicina-regenerativa.jpg"
 ---
 
 <style>
@@ -180,11 +181,11 @@ import imgCirugiaColumna from "/public/images/cirugia-de-columna.jpg"
       </div>
 
       <!-- carta 4 -->
-      <div class="card">
-        <img src="https://staticnew-prod.topdoctors.cl/files/Image/large/0640cb68f1b75939a771a9a1cb97fc01.jpg" alt="Diagnóstico por imágenes" />
-        <div style="font-family: 'Nunito', sans-serif;" class="card-title">Diagnóstico por imágenes</div>
-        <div style="font-family: 'Nunito', sans-serif;" class="card-text">Imágenes del cuerpo para detectar, evaluar y guiar tratamientos médicos.</div>
-        <button onclick="window.location.href='/tratamientos/diagnostico-por-imagenes'" class="btn-read-more">Leer más</button>
+       <div class="card">
+        <img src={imgMedicinaRegenerativa.src} alt="Medicina regenerativa" />
+        <div style="font-family: 'Nunito', sans-serif;" class="card-title">Medicina regenerativa</div>
+        <div style="font-family: 'Nunito', sans-serif;" class="card-text">Regenera, repara y recupera.</div>
+        <button onclick="window.location.href='/tratamientos/medicina-regenerativa'" class="btn-read-more">Leer más</button>
       </div>
 
       <!-- carta 5 -->
@@ -212,12 +213,13 @@ import imgCirugiaColumna from "/public/images/cirugia-de-columna.jpg"
       </div>
 
       <!-- carta 8 -->
-      <div class="card">
-        <img src="https://www.bioxcellerator.com/wp-content/uploads/2023/03/medicina-regenerativa.png" alt="Medicina regenerativa" />
-        <div style="font-family: 'Nunito', sans-serif;" class="card-title">Medicina regenerativa</div>
-        <div style="font-family: 'Nunito', sans-serif;" class="card-text">Regenera, repara y recupera.</div>
-        <button onclick="window.location.href='/tratamientos/medicina-regenerativa'" class="btn-read-more">Leer más</button>
+       <div class="card">
+        <img src="https://staticnew-prod.topdoctors.cl/files/Image/large/0640cb68f1b75939a771a9a1cb97fc01.jpg" alt="Diagnóstico por imágenes" />
+        <div style="font-family: 'Nunito', sans-serif;" class="card-title">Diagnóstico por imágenes</div>
+        <div style="font-family: 'Nunito', sans-serif;" class="card-text">Imágenes del cuerpo para detectar, evaluar y guiar tratamientos médicos.</div>
+        <button onclick="window.location.href='/tratamientos/diagnostico-por-imagenes'" class="btn-read-more">Leer más</button>
       </div>
+      
       
     </div>
   </div>
