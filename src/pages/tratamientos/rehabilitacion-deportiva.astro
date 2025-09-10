@@ -6,6 +6,7 @@
     import WhatsappButton from "@/components/whatsapp/WhatsappButton.astro"
     import ImagePage from "@/components/image/ImagePage.astro"
     import InfoRehabilitacionDeportiva from "@/components/tratamientos-cards/InfoRehabilitacionDeportiva.astro"
+    import imgRehabilitacionDeportiva from "/public/images/rehabilitacion-deportiva.png"
 
     const currLocale = getLocaleFromUrl(Astro.url);
     const siteData = getTranslatedData("siteData", currLocale);
@@ -18,6 +19,6 @@
 <BaseLayout title={siteData.title} description={siteData.description} navStyle="frosted">
 	<NavKrida />
 	<WhatsappButton phone="5215512345678" tooltip="Escríbenos por WhatsApp" />
-    <ImagePage imageUrl="https://www.clinicacolumbia.com/wp-content/uploads/2023/06/definicion-alcance-rehabilitacion.jpg" title="Rehabilitación deportiva" />
+    <ImagePage imageUrl={imgRehabilitacionDeportiva.src} title="Rehabilitación deportiva" />
     <InfoRehabilitacionDeportiva />
 </BaseLayout>
