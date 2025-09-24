@@ -10,55 +10,45 @@ import { type TestimonialItem } from "../types/configDataTypes";
 export const testimonialData: TestimonialItem[] = [
 	{
 		avatar: Geoffrey,
-		name: "Geoffrey",
-		title: "Patient Since 2020",
-		testimonial: `Just spinning my first premium cosmic theme, Galaxy, and super impressed with the DX. 
-    The readme, the scripts and the tours :chefskiss: Super good job.
-    `,
+		name: "María González",
+		title: "Paciente desde 2020",
+		testimonial: `Gracias a Rehabilita Sport recuperé la movilidad después de una cirugía de rodilla. 
+    El trato siempre ha sido humano, cercano y profesional.`,
 	},
 	{
 		avatar: Connor,
-		name: "Connor D",
-		title: "Patient Since 2023",
-		testimonial: `Cosmic Themes offers more than stunning templates built on a rock-solid Astro
-     foundation—it fosters a vibrant community. With value-added perks like Discord and GitHub 
-     invites, Cosmic Themes is a no-brainer for anyone launching a new Astro project.
-      `,
+		name: "Carlos Ramírez",
+		title: "Paciente desde 2023",
+		testimonial: `El equipo médico realmente se interesa por ti. 
+    No solo atienden los síntomas, sino que se preocupan por tu bienestar completo.`,
 	},
 	{
 		avatar: BowTiedFocus,
-		name: "BowTiedFocus",
-		title: "Patient Since 2019",
-		testimonial: `The Blogsmith Pro theme is ridiculously well put together and documented.
-      I learned a ton about Astro engineering by studying it, and I've already used some of the components
-      for my web design clients. 
-      `,
+		name: "Laura Fernández",
+		title: "Paciente desde 2019",
+		testimonial: `Tenía años con dolor de espalda y aquí encontré la solución. 
+    La rehabilitación fue efectiva y ahora puedo llevar una vida normal.`,
 	},
-
 	{
 		avatar: Aniket,
-		name: "Aniket P",
-		title: "Patient Since 2022",
-		testimonial: `I'm not a front-end dev, but I wanted to rebuild my personal site with Astro. If you're in the same shoes,
-    I can't recommend enough Cosmic Themes. The entire process required exactly one CSS change.
-      `,
+		name: "José Martínez",
+		title: "Paciente desde 2022",
+		testimonial: `Me ayudaron a recuperarme tras un accidente deportivo. 
+    Los ejercicios y el seguimiento hicieron toda la diferencia.`,
 	},
 	{
 		avatar: David,
-		name: "David G",
-		title: "Patient Since 2022",
-		testimonial: `It's the cleanest template standup experience ever! I've never used Astro, but looking at the demo, code, it
-      should be fairly simple pickup on top of my existing React and NextJS experience.
-      `,
+		name: "Ana Torres",
+		title: "Paciente desde 2022",
+		testimonial: `Excelente atención y profesionales de primer nivel. 
+    Siempre me explican con claridad cada paso del tratamiento.`,
 	},
 	{
 		avatar: Damiano,
-		name: "Damiano L",
-		title: "Patient Since 2020",
-		testimonial: `Cosmic Themes provides some of the best Astro themes out there. They are well designed, easy to customize and, 
-    most importantly, the team is very responsive concerning support and feature requests. Using their themes allows you to forget 
-    about the design and focus on content creation.
-      `,
+		name: "Luis Herrera",
+		title: "Paciente desde 2020",
+		testimonial: `Lo que más valoro es la calidez humana del equipo. 
+    Me siento acompañado en todo mi proceso de recuperación.`,
 	},
 ];
 

@@ -1,48 +1,35 @@
 import { type FaqItem } from "../types/configDataTypes";
 
-// replace this data with whatever you want in your FAQ section
+// Datos de FAQ para clínica de rehabilitación
 export const faqData: FaqItem[] = [
 	{
-		question: "Who are the themes for?",
-		answer: `These themes are for developers who want to have pre-created templates to use in their projects,
-    and have the hard stuff taken care of. Whether that is personal projects, a new SaaS business, a website for a client, etc.
-    They offer speed, customizability with swappable 
-    components, built-in SEO, and image optimization. Instead of spending hours figuring out 
-    how to do this yourself, you can leverage the themes to save weeks of time and effort. You can easily 
-    mix and match sections, update the copy, and change the color theme with just one line of code.`,
+		question: "¿Qué servicios ofrece la clínica?",
+		answer: `Ofrecemos fisioterapia, rehabilitación post-quirúrgica, terapia ocupacional, tratamientos de dolor crónico y programas de ejercicio personalizado. 
+		Todos nuestros planes se adaptan a las necesidades de cada paciente para una recuperación óptima.`,
 	},
 	{
-		question: "What all components are included?",
-		answer: `60+ components. Including 6 feature sections, 3 hero sections, 2 services sections, 2 testimonial sections, 
-    2 faq sections, 404, contact, legal, 2 blog indexes, blog post layout, and a cookie banner.`,
+		question: "¿Necesito cita previa para ser atendido?",
+		answer: `Sí, recomendamos agendar una cita para poder brindarte atención personalizada y preparar tu plan de tratamiento con antelación. 
+		Puedes agendar tu cita por teléfono, WhatsApp o mediante nuestro formulario en línea.`,
 	},
 	{
-		question: 'What do you mean by "free updates"?',
-		answer: `When you purchase any of our themes, you get lifetime updates for free. 
-      We regularly update our themes to ensure compatibility with the latest version of Astro, 
-      and to add new features or bug fixes.`,
+		question: "¿La clínica atiende seguros médicos?",
+		answer: `Sí, trabajamos con varias aseguradoras. Por favor consulta con nuestro personal qué seguros aceptamos y cómo realizar el trámite para tu tratamiento.`,
 	},
 	{
-		question: "Why Astro?",
-		answer: `Astro is an excellent framework for content-focused websites, with a great developer
-      experience. It also allows you to use any UI framework you want within it, such as React, Vue,
-      and Svelte. This means you can use any of your existing components, or any of the thousands of 
-      components available online. `,
+		question: "¿Cuánto tiempo duran las sesiones de rehabilitación?",
+		answer: `Cada sesión dura entre 45 y 60 minutos, dependiendo del tipo de tratamiento y la condición del paciente. 
+		Se realiza una evaluación inicial para determinar la frecuencia y duración recomendada.`,
 	},
 	{
-		question: "Can I use a theme for multiple projects?",
-		answer: `Yes, you can use any of our themes for as many projects as you like.
-      You can even sell websites you create with them to your clients. As long as you
-      don't resell the theme itself, you're likely to go! See our
-      <a href="https://cosmicthemes.com/license/" target="_blank" rel="noopener noreferrer">License</a> 
-      page for more details.`,
+		question: "¿Puedo recibir un plan de ejercicios para casa?",
+		answer: `Sí, nuestros terapeutas pueden elaborar un plan de ejercicios personalizado para continuar tu recuperación en casa, 
+		asegurando que avances de manera segura y efectiva entre sesiones.`,
 	},
 	{
-		question: "How do I download new versions of the themes?",
-		answer: `You can download any new versions of the themes by accessing
-      your lemonsqueezy library. When you first purchase the theme, I recommend 
-      creating a lemonsqueezy account at app.lemonsqueezy.com. Then you will have
-      access to any theme updates from that page.`,
+		question: "¿Qué medidas de higiene y seguridad siguen en la clínica?",
+		answer: `Contamos con protocolos estrictos de limpieza y desinfección de todas las áreas, uso obligatorio de cubrebocas para el personal y pacientes, 
+		y disponibilidad de gel antibacterial. La seguridad y bienestar de nuestros pacientes es nuestra prioridad.`,
 	},
 ];
 

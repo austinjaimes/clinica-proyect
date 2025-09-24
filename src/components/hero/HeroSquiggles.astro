@@ -16,11 +16,11 @@ const t = useTranslations(currLocale);
 		"relative isolate flex w-full items-center overflow-hidden",
 		"mx-auto rounded-b-2xl shadow-md md:rounded-b-3xl",
 	]}
-	aria-label="Hero section"
+	aria-label="Sección principal"
 >
 	<Image
 		src={backgroundImage}
-		alt="Blue healthcare background"
+		alt="Fondo azul relacionado con la salud"
 		class="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover"
 		aria-hidden="true"
 	/>
@@ -34,9 +34,9 @@ const t = useTranslations(currLocale);
 				data-aos="fade-right"
 				class="text-primary leading-tighter font-heading mb-4 text-4xl font-extrabold md:text-5xl xl:text-7xl"
 			>
-				We Help Patients Live Longer,
-				<span class="text-accent-400">Healthier </span>
-				Lives
+				Te ayudamos a vivir una vida
+				<span class="text-accent-400">más sana </span>
+				y plena
 			</h1>
 			<p
 				data-aos-trigger="#hero-squiggles-trigger"
@@ -44,20 +44,20 @@ const t = useTranslations(currLocale);
 				data-aos-delay=".2"
 				class="text-muted-foreground mb-8 text-lg md:text-xl"
 			>
-				Experience exceptional healthcare with our dedicated team of medical professionals. We're
-				committed to your well-being and providing personalized care.
+				Recibe atención médica excepcional con nuestro equipo dedicado de profesionales de la
+				salud. Estamos comprometidos con tu bienestar y en brindarte un cuidado personalizado.
 			</p>
 			<Button
 				type="button"
 				href={getLocalizedRoute(currLocale, `#contact`)}
 				variant="primary"
 				class="md:text-lg"
-				aria-label="Book An Appointment"
+				aria-label="Agendar una cita"
 				data-aos-trigger="#hero-squiggles-trigger"
 				data-aos="fade-right"
 				data-aos-delay=".4"
 			>
-				Book An Appointment
+				Agendar una cita
 			</Button>
 		</div>
 		<div
@@ -65,7 +65,7 @@ const t = useTranslations(currLocale);
 		>
 			<Image
 				src={doctorImage}
-				alt="Smiling healthcare professional with stethoscope"
+				alt="Profesional de la salud sonriendo con estetoscopio"
 				class="m-0 h-full w-auto object-contain p-0 align-bottom"
 				width={700}
 				densities={[1.5, 2]}
