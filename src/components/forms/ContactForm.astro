@@ -4,102 +4,114 @@ import { Checkbox } from "@/components/starwind/checkbox";
 import { Input } from "@/components/starwind/input";
 import { Label } from "@/components/starwind/label";
 import {
-	Select,
-	SelectContent,
-	SelectGroup,
-	SelectItem,
-	SelectLabel,
-	SelectSeparator,
-	SelectTrigger,
-	SelectValue,
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from "@/components/starwind/select";
 import { Textarea } from "@/components/starwind/textarea";
 import { getLocaleFromUrl } from "@/js/localeUtils";
-import { getLocalizedRoute, getTranslatedData, useTranslations } from "@/js/translationUtils";
+import { useTranslations } from "@/js/translationUtils";
 
 const currLocale = getLocaleFromUrl(Astro.url);
 const t = useTranslations(currLocale);
+const FORMSPREE_URL = "https://formspree.io/f/xwprplog";
 ---
 
 <form id="contact-form" class="flex flex-col gap-6">
-	<div class="flex flex-col">
-		<Label for="full-name">Nombre Completo</Label>
-		<Input type="text" name="full-name" class="min-h-12 px-4 py-3" placeholder="Juan Pérez" />
-	</div>
-	<div class="flex flex-col">
-		<Label for="email">Correo Electrónico</Label>
-		<Input type="email" name="email" class="min-h-12 px-4 py-3" placeholder="juanperez@ejemplo.com" />
-	</div>
-	<div class="flex flex-col">
-		<Label for="phone">Teléfono</Label>
-		<Input type="tel" name="phone" class="min-h-12 px-4 py-3" placeholder="(55) 1234-5678" />
-	</div>
-	<div class="flex flex-col">
-		<Label for="reason">Motivo de Contacto</Label>
-		<Select name="reason">
-			<SelectTrigger class="min-h-12 w-full px-4 py-3">
-				<SelectValue placeholder="Selecciona un motivo" />
-			</SelectTrigger>
-			<SelectContent>
-				<SelectGroup>
-					<SelectItem value="appointment-scheduling">Agendar Cita</SelectItem>
-					<SelectItem value="medical-records">Expedientes Médicos</SelectItem>
-					<SelectItem value="billing-inquiry">Consultas de Facturación</SelectItem>
-					<SelectItem value="general-information">Información General</SelectItem>
-					<SelectItem value="other">Otro</SelectItem>
-				</SelectGroup>
-			</SelectContent>
-		</Select>
-	</div>
-	<div class="flex flex-col">
-		<Label for="existing-patient" class="mb-1">¿Eres paciente actual?</Label>
-		<div class="flex gap-1">
-			<Checkbox id="existing-patient" variant="primary" name="existing-patient" /><p>Sí</p>
-		</div>
-	</div>
-	<div class="flex flex-col">
-		<Label for="message">Tu Mensaje</Label>
-		<Textarea
-			name="message"
-			class="min-h-12 px-4 py-3"
-			placeholder="¿Cómo podemos ayudarte?"
-			rows={4}
-		/>
-	</div>
-	<div class="mt-2 flex flex-col">
-		<div class="flex gap-1">
-			<Label for="consent" class="sr-only">Consentimiento</Label>
-			<Checkbox id="consent" variant="primary" name="consent" /><p>
-				Doy mi consentimiento para que este sitio web almacene la información que envío
-			</p>
-		</div>
-	</div>
-	<div>
-		<Button variant="primary" type="submit" class="w-full py-3 text-lg">Enviar Mensaje</Button>
-	</div>
+  <div class="flex flex-col">
+    <Label for="full-name">Nombre Completo</Label>
+    <Input type="text" name="full-name" required class="min-h-12 px-4 py-3" placeholder="Juan Pérez" />
+  </div>
+  <div class="flex flex-col">
+    <Label for="email">Correo Electrónico</Label>
+    <Input type="email" name="email" required class="min-h-12 px-4 py-3" placeholder="juanperez@ejemplo.com" />
+  </div>
+  <div class="flex flex-col">
+    <Label for="phone">Teléfono</Label>
+    <Input type="tel" name="phone" class="min-h-12 px-4 py-3" placeholder="(55) 1234-5678" />
+  </div>
+  <div class="flex flex-col">
+    <Label for="reason">Motivo de Contacto</Label>
+    <Select name="reason" required>
+      <SelectTrigger class="min-h-12 w-full px-4 py-3">
+        <SelectValue placeholder="Selecciona un motivo" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectGroup>
+          <SelectItem value="Agendar Cita">Agendar Cita</SelectItem>
+          <SelectItem value="Expedientes Médicos">Expedientes Médicos</SelectItem>
+          <SelectItem value="Consultas de Facturación">Consultas de Facturación</SelectItem>
+          <SelectItem value="Información General">Información General</SelectItem>
+          <SelectItem value="Otro">Otro</SelectItem>
+        </SelectGroup>
+      </SelectContent>
+    </Select>
+  </div>
+  <div class="flex flex-col">
+    <Label for="existing-patient" class="mb-1">¿Eres paciente actual?</Label>
+    <div class="flex gap-1">
+      <Checkbox id="existing-patient" variant="primary" name="existing-patient" />
+      <p>Sí</p>
+    </div>
+  </div>
+  <div class="flex flex-col">
+    <Label for="message">Tu Mensaje</Label>
+    <Textarea name="message" required class="min-h-12 px-4 py-3" placeholder="¿Cómo podemos ayudarte?" rows={4} />
+  </div>
+  <div class="mt-2 flex flex-col">
+    <div class="flex gap-1">
+      <Label for="consent" class="sr-only">Consentimiento</Label>
+      <Checkbox id="consent" variant="primary" name="consent" required />
+      <p>Doy mi consentimiento para que este sitio web almacene la información que envío</p>
+    </div>
+  </div>
+  <div>
+    <Button variant="primary" type="submit" class="w-full py-3 text-lg">Enviar Mensaje</Button>
+  </div>
+
+  <!-- Mensajes dinámicos -->
+  <p id="form-success" class="hidden text-green-600 mt-2 font-semibold">¡Gracias! Tu mensaje ha sido enviado.</p>
+  <p id="form-error" class="hidden text-red-600 mt-2 font-semibold">Ups, algo salió mal. Intenta de nuevo.</p>
 </form>
 
 <script>
-	function handleFormSubmit() {
-		const form = document.querySelector("#contact-form") as HTMLFormElement;
-		if (form) {
-			form.addEventListener("submit", (e) => {
-				e.preventDefault();
-				const formData = new FormData(form);
-				const formValues = Object.fromEntries(formData.entries());
+  const form = document.getElementById("contact-form");
+  const successMessage = document.getElementById("form-success");
+  const errorMessage = document.getElementById("form-error");
 
-				// demo form data logging
-				console.log("Valores del formulario:", formValues);
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    successMessage.classList.add("hidden");
+    errorMessage.classList.add("hidden");
 
-				// Aquí puedes agregar lógica adicional como:
-				// - Validación del formulario
-				// - Envío a API
-				// - Manejo de éxito/error
-			});
-		}
-	}
+    const formData = new FormData(form);
 
-	handleFormSubmit();
+    // Ajuste para los Select y Checkbox personalizados
+    const reasonSelect = form.querySelector("[name='reason'] select");
+    if (reasonSelect) formData.set("reason", reasonSelect.value);
 
-	document.addEventListener("astro:after-swap", handleFormSubmit);
+    const existingPatient = form.querySelector("[name='existing-patient'] input");
+    if (existingPatient) formData.set("existing-patient", existingPatient.checked ? "Sí" : "No");
+
+    try {
+      const response = await fetch("https://formspree.io/f/xwprplog", {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" },
+      });
+
+      if (response.ok) {
+        successMessage.classList.remove("hidden");
+        form.reset();
+      } else {
+        errorMessage.classList.remove("hidden");
+      }
+    } catch (error) {
+      console.error(error);
+      errorMessage.classList.remove("hidden");
+    }
+  });
 </script>
