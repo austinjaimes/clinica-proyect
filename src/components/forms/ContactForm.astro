@@ -17,7 +17,7 @@ import { useTranslations } from "@/js/translationUtils";
 
 const currLocale = getLocaleFromUrl(Astro.url);
 const t = useTranslations(currLocale);
-const FORMSPREE_URL = "https://formspree.io/f/xwprplog";
+const FORMSPREE_URL = "https://formspree.io/f/mpwywoan";
 ---
 
 <form id="contact-form" class="flex flex-col gap-6">
@@ -97,7 +97,7 @@ const FORMSPREE_URL = "https://formspree.io/f/xwprplog";
     if (existingPatient) formData.set("existing-patient", existingPatient.checked ? "Sí" : "No");
 
     try {
-      const response = await fetch("https://formspree.io/f/xwprplog", {
+      const response = await fetch("https://formspree.io/f/mpwywoan", {
         method: "POST",
         body: formData,
         headers: { Accept: "application/json" },
