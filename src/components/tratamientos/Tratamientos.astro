@@ -1,10 +1,10 @@
 ---
-import imgRehabilitacionIntervencionista from "/public/images/rehabilitacion-intervencionista.jpg"
-import imgRehabilitacionDeportiva from "/public/images/rehabilitacion-deportiva.webp"
-import imgCirugiaColumna from "/public/images/cirugia-de-columna-2.jpg"
-import imgMedicinaRegenerativaNew from "/public/images/medicina-regenerativanew.webp"
-import imgDiagnosticoPorImagenes from "/public/images/diagnostico-por-imagenes.webp"
-import imgProtesisDeCaderaYRodilla from "/public/images/protesis-de-cadera-y-rodilla.webp"
+import imgRehabilitacionIntervencionista from "/public/images/rehabilitacion-intervencionista.jpg";
+import imgRehabilitacionDeportiva from "/public/images/rehabilitacion-deportiva.webp";
+import imgCirugiaColumna from "/public/images/cirugia-de-columna-2.jpg";
+import imgMedicinaRegenerativaNew from "/public/images/medicina-regenerativanew.webp";
+import imgDiagnosticoPorImagenes from "/public/images/diagnostico-por-imagenes.webp";
+import imgProtesisDeCaderaYRodilla from "/public/images/protesis-de-cadera-y-rodilla.webp";
 ---
 
 <style>
@@ -23,47 +23,43 @@ import imgProtesisDeCaderaYRodilla from "/public/images/protesis-de-cadera-y-rod
     scroll-behavior: smooth;
   }
 
-  /* .carousel::-webkit-scrollbar {
-    display: none;
-  } */
-
   .carousel::-webkit-scrollbar {
-  height: 8px;
-}
+    height: 8px;
+  }
 
-.carousel::-webkit-scrollbar-thumb {
-  background-color: #555;
-  border-radius: 4px;
-}
+  .carousel::-webkit-scrollbar-thumb {
+    background-color: #9ca3af; /* gris oscuro */
+    border-radius: 4px;
+  }
 
-.carousel::-webkit-scrollbar-track {
-  background-color: #1e1e1e;
-}
+  .carousel::-webkit-scrollbar-track {
+    background-color: #e5e7eb; /* gris claro */
+  }
 
   .card {
-  min-width: 260px;
-  width: 260px; /* fija el ancho igual al min-width */
-  max-width: 260px; /* opcional */
-  height: 460px;
-  background: #1e1e1e;
-  color: white;
-  border-radius: 1rem;
-  padding: 1rem;
-  flex-shrink: 0;
-  scroll-snap-align: start;
-  transition: transform 0.3s ease;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  justify-content: space-between;
-  overflow-wrap: break-word; /* para que las palabras largas se rompan */
-}
-
+    min-width: 260px;
+    width: 260px;
+    max-width: 260px;
+    height: 460px;
+    background: #ffffff; /* color claro */
+    color: #111827; /* texto oscuro */
+    border-radius: 1rem;
+    padding: 1rem;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+    overflow-wrap: break-word;
+  }
 
   .card:hover {
     transform: scale(1.05);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.2);
   }
 
   .card img {
@@ -81,14 +77,11 @@ import imgProtesisDeCaderaYRodilla from "/public/images/protesis-de-cadera-y-rod
   }
 
   .card-text {
-  font-size: 0.95rem;
-  color: #ccc;
-  flex-grow: 1;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  hyphens: auto; /* opcional, para mejor separación de palabras */
-}
-
+    font-size: 0.95rem;
+    color: #4B5563;
+    flex-grow: 1;
+    overflow-wrap: break-word;
+  }
 
   .btn-read-more {
     background-color: #3b82f6;
@@ -112,7 +105,7 @@ import imgProtesisDeCaderaYRodilla from "/public/images/protesis-de-cadera-y-rod
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(30, 30, 30, 0.8);
+    background: rgba(255,255,255,0.8);
     border-radius: 50%;
     width: 36px;
     height: 36px;
@@ -130,7 +123,7 @@ import imgProtesisDeCaderaYRodilla from "/public/images/protesis-de-cadera-y-rod
   }
 
   .arrow svg {
-    fill: white;
+    fill: #111827;
     width: 20px;
     height: 20px;
   }
@@ -150,9 +143,10 @@ import imgProtesisDeCaderaYRodilla from "/public/images/protesis-de-cadera-y-rod
   }
 </style>
 
-<section id="tratamientos-section" class="px-6 py-20 bg-neutral-900 text-white scroll-mt-16">
+<section id="tratamientos-section" class="px-6 py-20 bg-gray-50 text-gray-900 scroll-mt-16">
   <div class="max-w-6xl mx-auto text-center mb-12">
-    <h2 style="font-family: 'Nunito', sans-serif; font-weight: 900;  color: #ffffff;" class="text-3xl md:text-5xl font-bold">Nuestros Tratamientos</h2>
+    <h2 style="font-family: 'Nunito', sans-serif; font-weight: 900; color: #1f2937;" 
+        class="text-3xl md:text-5xl font-bold">Nuestros Tratamientos</h2>
   </div>
 
   <div class="carousel-container max-w-6xl mx-auto">
@@ -161,97 +155,83 @@ import imgProtesisDeCaderaYRodilla from "/public/images/protesis-de-cadera-y-rod
       <!-- carta 1 -->
       <div class="card">
         <img src={imgRehabilitacionIntervencionista.src} alt="Rehabilitación Intervencionista" />
-        <div style="font-family: 'Nunito', sans-serif;" class="card-title">Rehabilitación Intervencionista</div>
-        <div style="font-family: 'Nunito', sans-serif;" class="card-text">Tratamientos precisos para el dolor y la movilidad</div>
+        <div style="font-family: 'Nunito', sans-serif; font-weight: 700; color: #111827;" class="card-title">Rehabilitación Intervencionista</div>
+        <div style="font-family: 'Nunito', sans-serif; font-weight: 400; color: #4B5563;" class="card-text">
+          Tratamientos precisos para el dolor y la movilidad
+        </div>
         <button onclick="window.location.href='/tratamientos/rehabilitacion-intervencionista'" class="btn-read-more">Leer más</button>
       </div>
 
       <!-- carta 2 -->
       <div class="card">
         <img src={imgRehabilitacionDeportiva.src} alt="Rehabilitación deportiva" />
-        <div style="font-family: 'Nunito', sans-serif;" class="card-title">Rehabilitación deportiva</div>
-        <div style="font-family: 'Nunito', sans-serif;" class="card-text">Recuperación y prevención de lesiones en deportistas.</div>
+        <div style="font-family: 'Nunito', sans-serif; font-weight: 700; color: #111827;" class="card-title">Rehabilitación deportiva</div>
+        <div style="font-family: 'Nunito', sans-serif; font-weight: 400; color: #4B5563;" class="card-text">
+          Recuperación y prevención de lesiones en deportistas.
+        </div>
         <button onclick="window.location.href='/tratamientos/rehabilitacion-deportiva'" class="btn-read-more">Leer más</button>
       </div>
 
       <!-- carta 3 -->
       <div class="card">
         <img src={imgCirugiaColumna.src} alt="Cirugía de columna vertebral" />
-        <div style="font-family: 'Nunito', sans-serif;" class="card-title">Cirugía de columna vertebral</div>
-        <div style="font-family: 'Nunito', sans-serif;" class="card-text">Cirugía para aliviar dolor y tratar trastornos estructurales de la columna.</div>
+        <div style="font-family: 'Nunito', sans-serif; font-weight: 700; color: #111827;" class="card-title">Cirugía de columna vertebral</div>
+        <div style="font-family: 'Nunito', sans-serif; font-weight: 400; color: #4B5563;" class="card-text">
+          Cirugía para aliviar dolor y tratar trastornos estructurales de la columna.
+        </div>
         <button onclick="window.location.href='/tratamientos/cirugia-de-columna-vertebral'" class="btn-read-more">Leer más</button>
       </div>
 
       <!-- carta 4 -->
-       <div class="card">
+      <div class="card">
         <img src={imgMedicinaRegenerativaNew.src} alt="Medicina regenerativa" />
-        <div style="font-family: 'Nunito', sans-serif;" class="card-title">Medicina regenerativa</div>
-        <div style="font-family: 'Nunito', sans-serif;" class="card-text">Regenera, repara y recupera.</div>
+        <div style="font-family: 'Nunito', sans-serif; font-weight: 700; color: #111827;" class="card-title">Medicina regenerativa</div>
+        <div style="font-family: 'Nunito', sans-serif; font-weight: 400; color: #4B5563;" class="card-text">
+          Regenera, repara y recupera.
+        </div>
         <button onclick="window.location.href='/tratamientos/medicina-regenerativa'" class="btn-read-more">Leer más</button>
       </div>
 
       <!-- carta 5 -->
       <div class="card">
         <img src="https://fisiofix.pe/wp-content/uploads/2024/07/laser-en-fisioterapia.webp" alt="Láser de alta intensidad" />
-        <div style="font-family: 'Nunito', sans-serif;" class="card-title">Láser de alta intensidad</div>
-        <div style="font-family: 'Nunito', sans-serif;" class="card-text">Láser terapéutico que alivia el dolor.</div>
+        <div style="font-family: 'Nunito', sans-serif; font-weight: 700; color: #111827;" class="card-title">Láser de alta intensidad</div>
+        <div style="font-family: 'Nunito', sans-serif; font-weight: 400; color: #4B5563;" class="card-text">
+          Láser terapéutico que alivia el dolor.
+        </div>
         <button onclick="window.location.href='/tratamientos/laser-de-alta-intensidad'" class="btn-read-more">Leer más</button>
       </div>
 
       <!-- carta 6 -->
       <div class="card">
         <img src="https://clinicamedicaarboledas.com/wp-content/uploads/2023/06/camara-hiperbarica-jpg.webp" alt="Cámara Hiperbárica" />
-        <div style="font-family: 'Nunito', sans-serif;" class="card-title">Cámara Hiperbárica</div>
-        <div style="font-family: 'Nunito', sans-serif;" class="card-text">Oxígeno puro a alta presión para sanar más rápido.</div>
+        <div style="font-family: 'Nunito', sans-serif; font-weight: 700; color: #111827;" class="card-title">Cámara Hiperbárica</div>
+        <div style="font-family: 'Nunito', sans-serif; font-weight: 400; color: #4B5563;" class="card-text">
+          Oxígeno puro a alta presión para sanar más rápido.
+        </div>
         <button onclick="window.location.href='/tratamientos/camara-hiperbarica'" class="btn-read-more">Leer más</button>
       </div>
 
       <!-- carta 7 -->
       <div class="card">
         <img src={imgProtesisDeCaderaYRodilla.src} alt="Protesis de cadera y rodilla" />
-        <div style="font-family: 'Nunito', sans-serif;" class="card-title">Protesis de cadera y rodilla</div>
-        <div style="font-family: 'Nunito', sans-serif;" class="card-text">Reemplazo articular para aliviar dolor y mejorar la movilidad.</div>
+        <div style="font-family: 'Nunito', sans-serif; font-weight: 700; color: #111827;" class="card-title">Protesis de cadera y rodilla</div>
+        <div style="font-family: 'Nunito', sans-serif; font-weight: 400; color: #4B5563;" class="card-text">
+          Reemplazo articular para aliviar dolor y mejorar la movilidad.
+        </div>
         <button onclick="window.location.href='/tratamientos/protesis-de-cadera-y-rodilla'" class="btn-read-more">Leer más</button>
       </div>
 
       <!-- carta 8 -->
-       <div class="card">
+      <div class="card">
         <img src={imgDiagnosticoPorImagenes.src} alt="Diagnóstico por imágenes" />
-        <div style="font-family: 'Nunito', sans-serif;" class="card-title">Diagnóstico por imágenes</div>
-        <div style="font-family: 'Nunito', sans-serif;" class="card-text">Imágenes del cuerpo para detectar, evaluar y guiar tratamientos médicos.</div>
+        <div style="font-family: 'Nunito', sans-serif; font-weight: 700; color: #111827;" class="card-title">Diagnóstico por imágenes</div>
+        <div style="font-family: 'Nunito', sans-serif; font-weight: 400; color: #4B5563;" class="card-text">
+          Imágenes del cuerpo para detectar, evaluar y guiar tratamientos médicos.
+        </div>
         <button onclick="window.location.href='/tratamientos/diagnostico-por-imagenes'" class="btn-read-more">Leer más</button>
       </div>
-      
-      
+
     </div>
   </div>
 </section>
-
-
-<!-- <script>
-  const carousel = document.getElementById('carousel');
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-
-  const scrollAmount = 280; // ancho de cada card + gap (aprox)
-
-  prevBtn.addEventListener('click', () => {
-    carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-  });
-
-  nextBtn.addEventListener('click', () => {
-    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-  });
-
-  // Soporte para navegación con teclado (opcional)
-  prevBtn.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-    }
-  });
-  nextBtn.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    }
-  });
-</script> -->

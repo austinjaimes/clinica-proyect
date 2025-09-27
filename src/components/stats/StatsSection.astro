@@ -1,28 +1,30 @@
 ---
-// Este componente no necesita props por ahora, pero puedes agregar si quieres.
 import { onMount } from 'solid-js';
 ---
 
-<section id="stats" class="bg-neutral-900 py-16">
+<section id="stats" class="bg-gray-50 py-16">
   <div class="max-w-7xl mx-auto px-4 text-center">
-    <h2 style="font-family: 'Nunito', sans-serif; font-weight: 900;  color: #ffffff;" class="text-3xl md:text-5xl font-bold mb-4">
+    <h2 style="font-family: 'Nunito', sans-serif; font-weight: 900; color: #1f2937;" 
+        class="text-3xl md:text-5xl font-bold mb-4">
       Nuestra Experiencia en Rehabilitación
     </h2>
-    <p style="color: #ccc;" class="mb-12">
+    <p style="color: #4B5563;" class="mb-12 text-lg md:text-xl">
       Más de 1,000 pacientes recuperados gracias a nuestros tratamientos personalizados y profesionales.
     </p>
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
-      <div class="stat-card p-6 bg-neutral-800 rounded-lg shadow-lg">
-        <span style="color: #4EBFE3;" class="text-5xl font-bold text-blue-600">+</span><span style="color: #4EBFE3;" class="text-5xl font-bold text-blue-600 counter" data-target="1500">0</span>
-        <p style="color: #ccc;" class="mt-2 text-gray-700 font-medium">Pacientes Recuperados</p>
+      <div class="stat-card p-6 bg-white rounded-lg shadow-lg">
+        <span style="color: #3b82f6;" class="text-5xl font-bold">+</span>
+        <span style="color: #3b82f6;" class="text-5xl font-bold counter" data-target="1500">0</span>
+        <p style="color: #6B7280;" class="mt-2 font-medium">Pacientes Recuperados</p>
       </div>
-      <div class="stat-card p-6 bg-neutral-800 rounded-lg shadow-lg">
-        <span style="color: #4EBFE3;" class="text-5xl font-bold text-green-600 counter" data-target="10">0</span>
-        <p style="color: #ccc;" class="mt-2 text-gray-700 font-medium">Profesionales Especializados</p>
+      <div class="stat-card p-6 bg-white rounded-lg shadow-lg">
+        <span style="color: #3b82f6;" class="text-5xl font-bold counter" data-target="10">0</span>
+        <p style="color: #6B7280;" class="mt-2 font-medium">Profesionales Especializados</p>
       </div>
-      <div class="stat-card p-6 bg-neutral-800 rounded-lg shadow-lg">
-        <span style="color: #4EBFE3;" class="text-5xl font-bold text-blue-600">+</span><span style="color: #4EBFE3;" class="text-5xl font-bold text-purple-600 counter" data-target="2000">0</span>
-        <p style="color: #ccc;" class="mt-2 text-gray-700 font-medium">Sesiones Completadas</p>
+      <div class="stat-card p-6 bg-white rounded-lg shadow-lg">
+        <span style="color: #3b82f6;" class="text-5xl font-bold">+</span>
+        <span style="color: #3b82f6;" class="text-5xl font-bold counter" data-target="2000">0</span>
+        <p style="color: #6B7280;" class="mt-2 font-medium">Sesiones Completadas</p>
       </div>
     </div>
   </div>
