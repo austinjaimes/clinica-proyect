@@ -1,20 +1,27 @@
-<!-- AQUI CAMBIE bg-gray-100 por bg-black -->
-<section id="testimonios" class="bg-neutral-900 py-12 px-4 md:px-8  scroll-mt-14">
+<section id="testimonios" class="bg-white py-12 px-4 md:px-8 scroll-mt-14">
   <div class="max-w-5xl mx-auto text-center">
-    <h2 style="font-family: 'Nunito', sans-serif; font-weight: 800; color: #ffffff;" class="h1 font-extrabold text-primary mb-4"
-    data-aos-trigger="#hero-shapes-trigger"
-				data-aos="fade-left"
-				data-aos-delay=".4">Testimonios de nuestros pacientes</h2>
-    <p style="font-family: 'Nunito', sans-serif; font-weight: 600;  color: #e5e5e5;" class="text-gray-600 mb-8 text-2xl"
-    data-aos-trigger="#hero-shapes-trigger"
-				data-aos="fade-left"
-				data-aos-delay=".4">Historias reales de recuperación y transformación</p>
+    <h2 style="font-family: 'Nunito', sans-serif; font-weight: 800; color: #111827;" 
+        class="h1 font-extrabold mb-4"
+        data-aos-trigger="#hero-shapes-trigger"
+        data-aos="fade-left"
+        data-aos-delay=".4">
+      Testimonios de nuestros pacientes
+    </h2>
+    <p style="font-family: 'Nunito', sans-serif; font-weight: 600; color: #4b5563;" 
+       class="mb-8 text-2xl"
+       data-aos-trigger="#hero-shapes-trigger"
+       data-aos="fade-left"
+       data-aos-delay=".4">
+      Historias reales de recuperación y transformación
+    </p>
 
-    <div class="relative bg-white rounded-xl shadow-xl overflow-hidden p-4"
-    data-aos-trigger="#hero-shapes-trigger"
-				data-aos="fade-up"
-				data-aos-delay=".4">
-      <h3 style="font-family: 'Nunito', sans-serif; font-weight: 400;" id="testimonial-title" class="h3 font-semibold text-gray-800 leading-relaxed tracking-wide mb-4 border-l-4 border-primary-500 pl-4">
+    <div class="relative bg-gray-100 rounded-xl shadow-lg overflow-hidden p-4"
+         data-aos-trigger="#hero-shapes-trigger"
+         data-aos="fade-up"
+         data-aos-delay=".4">
+      <h3 style="font-family: 'Nunito', sans-serif; font-weight: 400;" 
+          id="testimonial-title" 
+          class="h3 font-semibold text-gray-800 leading-relaxed tracking-wide mb-4 border-l-4 border-blue-500 pl-4">
         Aspiración de bursa
       </h3>
 
@@ -22,7 +29,7 @@
         <iframe
           id="testimonial-video"
           style="height: 400px;"
-          src="https://www.youtube.com/embed/fJhXHB075oo"
+          src="https://www.youtube-nocookie.com/embed/fJhXHB075oo"
           title="Testimonio"
           class="w-full h-full rounded-lg"
           frameborder="0"
@@ -33,15 +40,15 @@
 
       <div class="flex justify-between mt-6">
         <button
-        style="font-family: 'Nunito', sans-serif; font-weight: 300;"
-          class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition"
+          style="font-family: 'Nunito', sans-serif; font-weight: 300;"
+          class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
           onclick="changeTestimonial(-1)"
         >
           ← Anterior
         </button>
         <button
-        style="font-family: 'Nunito', sans-serif; font-weight: 300;"
-          class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition"
+          style="font-family: 'Nunito', sans-serif; font-weight: 300;"
+          class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
           onclick="changeTestimonial(1)"
         >
           Siguiente →
@@ -51,42 +58,16 @@
   </div>
 </section>
 
-<!-- ...tu HTML... -->
-
 <script>
   const testimonials = [
-    {
-      title: "Aspiración de bursa",
-      videoUrl: "https://www.youtube-nocookie.com/embed/fJhXHB075oo",
-    },
-    {
-      title: "Tratamiento dolor ciático",
-      videoUrl: "https://www.youtube-nocookie.com/embed/7X_tyoUWfeM",
-    },
-    {
-      title: "Radiofrecuencia en rodillas",
-      videoUrl: "https://www.youtube-nocookie.com/embed/5NvpZv8PzzQ",
-    },
-    {
-      title: "Hernia viscal",
-      videoUrl: "https://www.youtube-nocookie.com/embed/sHr1GVOPU2w",
-    },
-    {
-      title: "Autoplastía de rodilla",
-      videoUrl: "https://www.youtube-nocookie.com/embed/0uDUBeX5K5I",
-    },
-    {
-      title: "Epicondilitis lateral",
-      videoUrl: "https://www.youtube-nocookie.com/embed/ph3h44G3gAU",
-    },
-    {
-      title: "Desgarre en el hombro",
-      videoUrl: "https://www.youtube-nocookie.com/embed/djEoVK_cCAU",
-    },
-    {
-      title: "Procedimiento de PRP",
-      videoUrl: "https://www.youtube-nocookie.com/embed/uN5YmVE9CYE",
-    },
+    { title: "Aspiración de bursa", videoUrl: "https://www.youtube-nocookie.com/embed/fJhXHB075oo" },
+    { title: "Tratamiento dolor ciático", videoUrl: "https://www.youtube-nocookie.com/embed/7X_tyoUWfeM" },
+    { title: "Radiofrecuencia en rodillas", videoUrl: "https://www.youtube-nocookie.com/embed/5NvpZv8PzzQ" },
+    { title: "Hernia viscal", videoUrl: "https://www.youtube-nocookie.com/embed/sHr1GVOPU2w" },
+    { title: "Autoplastía de rodilla", videoUrl: "https://www.youtube-nocookie.com/embed/0uDUBeX5K5I" },
+    { title: "Epicondilitis lateral", videoUrl: "https://www.youtube-nocookie.com/embed/ph3h44G3gAU" },
+    { title: "Desgarre en el hombro", videoUrl: "https://www.youtube-nocookie.com/embed/djEoVK_cCAU" },
+    { title: "Procedimiento de PRP", videoUrl: "https://www.youtube-nocookie.com/embed/uN5YmVE9CYE" },
   ];
 
   let current = 0;

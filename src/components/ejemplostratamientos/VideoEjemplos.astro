@@ -32,6 +32,11 @@ const videos = [
   padding: 4rem 1rem;
   font-family: 'Nunito', sans-serif;
   text-align: center;
+  background-color: #ffffff; /* Fondo blanco */
+}
+
+.video-section h2 {
+  color: #111827; /* Texto oscuro */
 }
 
 .video-tabs {
@@ -49,13 +54,13 @@ const videos = [
   background-color: transparent;
   border-bottom: 2px solid transparent;
   cursor: pointer;
-  color: #ccc;
+  color: #4b5563; /* texto gris oscuro */
   transition: all 0.3s ease;
 }
 
 .tab-button.active {
-  border-color: #00b4d8;
-  color: #00b4d8;
+  border-color: #3b82f6;
+  color: #3b82f6; /* azul */
   font-weight: bold;
 }
 
@@ -68,7 +73,7 @@ const videos = [
   height: 0;
   overflow: hidden;
   border-radius: 0.75rem;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* sombra más suave sobre fondo blanco */
 }
 
 /* Reducir altura en pantallas grandes */
@@ -96,8 +101,8 @@ const videos = [
 }
 </style>
 
-<section class="video-section bg-neutral-900">
-  <h2 style="font-family: 'Nunito', sans-serif; font-weight: 900; color: #ffffff;" class="text-3xl md:text-5xl font-bold mb-10">
+<section class="video-section">
+  <h2 class="text-3xl md:text-5xl font-bold mb-10">
     Ejemplos de Tratamientos
   </h2>
 
