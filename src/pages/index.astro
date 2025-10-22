@@ -21,6 +21,7 @@ import ServicesSwiper from "@/components/services/ServicesSwiper.astro";
 import TeamSwiper from "@/components/team/TeamSwiper.astro";
 import TestimonialsSideImage from "@/components/testimonials/TestimonialsSideImage.astro";
 import TestimonialsSwiper from "@/components/testimonials/TestimonialsSwiper.astro";
+import TerapiasSection from "@/components/terapias/TerapiasSection.astro";
 import { getLocaleFromUrl } from "@/js/localeUtils";
 import { getTranslatedData } from "@/js/translationUtils";
 import BaseLayout from "@/layouts/BaseLayout.astro";
@@ -54,8 +55,10 @@ const siteData = getTranslatedData("siteData", currLocale);
 
 	<!-- <ServicesSwiper /> -->
 	<!-- <ServicesCards /> -->
+	 <TerapiasSection />
 	<Tratamientos />
 	<StatsSection />
+	
 	<VideosEjemplos />
 	<TestimoniosSection />
 
