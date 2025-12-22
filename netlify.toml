@@ -7,8 +7,15 @@
   publish = "dist"
   functions = "netlify/functions/"
 
-# 🚧 MODO MANTENIMIENTO
+# ✅ Permitir la página de mantenimiento
+[[redirects]]
+  from = "/mantenimiento"
+  to = "/mantenimiento"
+  status = 200
+
+# 🚧 Redirigir todo lo demás
 [[redirects]]
   from = "/*"
   to = "/mantenimiento"
   status = 302
+  force = true
