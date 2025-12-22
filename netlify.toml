@@ -6,3 +6,9 @@
   command = "pnpm build"
   publish = "dist"
   functions = "netlify/functions/"
+
+# 🚧 MODO MANTENIMIENTO
+[[redirects]]
+  from = "/*"
+  to = "/mantenimiento"
+  status = 302
