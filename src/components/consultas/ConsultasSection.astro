@@ -1,0 +1,220 @@
+<!-- FORMULARIO DE CONSULTA -->
+<section class="contact-section">
+  <h2 class="section-title">Agenda tu Consulta</h2>
+
+  <!-- Tabs -->
+  <div class="contact-tabs">
+    <button class="tab-btn active" data-tab="presencial">Consulta Presencial</button>
+    <button class="tab-btn" data-tab="linea">Consulta en Línea</button>
+  </div>
+
+  <!-- Formularios -->
+  <div class="form-wrapper">
+    <!-- Presencial -->
+    <form class="contact-form active" id="form-presencial">
+      <label>Nombre completo
+        <input type="text" name="nombre" placeholder="Tu nombre completo" required>
+      </label>
+
+      <label>Teléfono
+        <input type="tel" name="telefono" placeholder="Tu teléfono" required>
+      </label>
+
+      <label>Correo electrónico
+        <input type="email" name="correo" placeholder="Tu correo electrónico" required>
+      </label>
+
+      <label>Edad
+        <input type="number" name="edad" min="0" placeholder="Tu edad">
+      </label>
+
+      <label>Motivo de la consulta
+        <input type="text" name="motivo" placeholder="Dolor, chequeo, etc.">
+      </label>
+
+      <label>Especialidad requerida
+        <select name="especialidad">
+          <option value="general">Medicina General</option>
+          <option value="fisioterapia">Fisioterapia</option>
+          <option value="pediatria">Pediatría</option>
+          <option value="otra">Otra</option>
+        </select>
+      </label>
+
+      <label>Fecha y hora preferida
+        <input type="datetime-local" name="fecha">
+      </label>
+
+      <label>Comentarios adicionales
+        <textarea name="comentarios" placeholder="Escribe algún comentario adicional"></textarea>
+      </label>
+
+      <label>Archivos adjuntos
+        <input type="file" name="archivos" multiple>
+      </label>
+
+      <button type="submit">Enviar Solicitud</button>
+    </form>
+
+    <!-- En Línea -->
+    <form class="contact-form" id="form-linea">
+      <label>Nombre completo
+        <input type="text" name="nombre" placeholder="Tu nombre completo" required>
+      </label>
+
+      <label>Correo electrónico
+        <input type="email" name="correo" placeholder="Tu correo electrónico" required>
+      </label>
+
+      <label>Motivo de la consulta
+        <input type="text" name="motivo" placeholder="Dolor, chequeo, etc.">
+      </label>
+
+      <label>Especialidad requerida
+        <select name="especialidad">
+          <option value="general">Medicina General</option>
+          <option value="fisioterapia">Fisioterapia</option>
+          <option value="pediatria">Pediatría</option>
+          <option value="otra">Otra</option>
+        </select>
+      </label>
+
+      <label>Comentarios o descripción del caso
+        <textarea name="comentarios" placeholder="Describe tu caso"></textarea>
+      </label>
+
+      <label>Archivos adjuntos
+        <input type="file" name="archivos" multiple>
+      </label>
+
+      <button type="submit">Enviar Solicitud</button>
+    </form>
+  </div>
+</section>
+
+<style>
+.contact-section {
+  width: 100%;
+  background-color: #171717;
+  padding: 3rem 1rem;
+  font-family: 'Nunito', sans-serif;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+.contact-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.tab-btn {
+  padding: 0.5rem 1.25rem;
+  border: none;
+  background: #f3f3f3;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.tab-btn.active {
+  background: #2563eb;
+  color: white;
+}
+
+.form-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.contact-form {
+  display: none;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-form.active {
+  display: flex;
+}
+
+.contact-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+  color: white;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-top: 0.25rem;
+}
+
+.contact-form button {
+  padding: 0.75rem 1.5rem;
+  background: #2563eb;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 1rem;
+  align-self: flex-start;
+}
+
+/* Cambiar color del placeholder */
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #cfd8dc;
+  opacity: 1;
+}
+</style>
+
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script is:inline>
+emailjs.init("64EgYZ50h2QzCrQ-y"); // Reemplaza con tu User ID de EmailJS
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Tabs
+  const tabs = document.querySelectorAll(".tab-btn");
+  const forms = document.querySelectorAll(".contact-form");
+
+  tabs.forEach((tab, idx) => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t => t.classList.remove("active"));
+      forms.forEach(f => f.classList.remove("active"));
+      tab.classList.add("active");
+      forms[idx].classList.add("active");
+    });
+  });
+
+  // Enviar formulario Presencial
+  document.getElementById('form-presencial').addEventListener('submit', function(e) {
+    e.preventDefault();
+    emailjs.sendForm('service_i0i85di', 'template_id_presencial', this)
+      .then(() => alert("Solicitud presencial enviada correctamente!"))
+      .catch(() => alert("Error al enviar la solicitud."));
+    this.reset();
+  });
+
+  // Enviar formulario En Línea
+  document.getElementById('form-linea').addEventListener('submit', function(e) {
+    e.preventDefault();
+    emailjs.sendForm('service_i0i85di', 'template_id_linea', this)
+      .then(() => alert("Solicitud en línea enviada correctamente!"))
+      .catch(() => alert("Error al enviar la solicitud."));
+    this.reset();
+  });
+});
+</script>
